@@ -1,0 +1,21 @@
+# Duo database files (contain sensitive keys)
+*.duo
+*.db
+
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+*.xcuserstate
+*.xcuserdatad
+xcuserdata/
+build/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# Resolved package versions live inside the generated .xcodeproj and do not
+# survive `xcodegen generate`. project.yml pins exact versions instead.
+DuoBee.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
