@@ -1,8 +1,8 @@
 # Relicense and identifier change — plan
 
-**Status: in progress (2026-08-18). Parts A, B, and D are done except the
-end-to-end release verification; Part C is done except the Sparkle key
-rotation. Distribution stays halted until the remaining items are done.**
+**Status: in progress (2026-08-18). Parts A, B, and C are done. Part D is done
+except cutting the 2.0.0 release itself and the end-to-end verification that
+follows it. Distribution stays halted until those are done.**
 
 This repository was reset to a single commit. The prior history, both GitHub
 repositories, and all published releases were deleted on 2026-08-18 because the
@@ -114,11 +114,15 @@ published and there are no users to migrate:
       applies once source is public; a single public repository may be simpler.
 - [x] Reapply branch protection. Making a repository private silently drops
       protection rules, which is how the previous ones were lost.
-- [ ] Generate a **new Sparkle EdDSA signing key**. The previous key signed
-      builds under the old identity. Back it up before shipping anything — it is
-      unrecoverable, and losing it permanently ends updates for every install.
-- [ ] Set `SUPublicEDKey` in `Info.plist` to the new key (`SUFeedURL` already
-      points at the new feed; the key still awaits rotation). `scripts/release.sh` refuses to publish if the key in the login
+- [x] ~~Generate a **new Sparkle EdDSA signing key**~~ Resolved differently by
+      owner decision on 2026-08-18: DuoBee now uses the maintainer's shared
+      Sparkle key (the default login-Keychain item, also used by Kona and
+      other projects). That key never signed any DuoBee release, so the
+      old-identity key (`aLqfo…VEik=`) is retired regardless — the intent of
+      this item. The shared key must be backed up once for all projects; do
+      not rotate it per-project (see RELEASING.md).
+- [x] Set `SUPublicEDKey` in `Info.plist` to the new key (`SUFeedURL` already
+      points at the new feed). `scripts/release.sh` refuses to publish if the key in the login
       Keychain does not match the plist — that guard is what caught the previous
       mismatch and should not be weakened.
 - [x] Add a source archive to each release. AGPL §6 requires Corresponding

@@ -118,6 +118,13 @@ every future update: without it, no installed copy of DuoBee can ever be updated
 again. It is not the same thing as the Developer ID certificate, and Apple has no
 copy of it.
 
+DuoBee uses the maintainer's **shared** Sparkle key — the default login-Keychain
+item that also signs updates for other projects (Kona, etc.). Do not delete or
+regenerate that item to "rotate" DuoBee's key: it would silently break updates
+for every other project signed with it. If DuoBee ever needs its own key, give
+it a separate item via `generate_keys --account DuoBee` and pass the same
+`--account` to `generate_appcast` in `release.sh`.
+
 The tools live in the resolved package artifacts, so resolve first:
 
 ```zsh
