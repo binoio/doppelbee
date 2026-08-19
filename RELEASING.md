@@ -6,24 +6,22 @@ one designated release Mac.
 
 ## How distribution is arranged
 
-This repository is private, but Sparkle fetches the update feed and the app
-archive **without credentials**. So artifacts are published to a separate public
-repository:
+Everything lives in **one public repository**:
 
 | | |
 |---|---|
-| Source (private) | `pubino/duobee` |
-| Artifacts (public) | `pubino/duobee-releases` |
-| Update feed | `https://pubino.github.io/duobee-releases/appcast.xml` (Pages, `main` `/docs`) |
-| Downloads | GitHub Releases on `pubino/duobee-releases` |
+| Source + Artifacts | `binoio/duobee` (public) |
+| Update feed | `https://binoio.github.io/duobee/appcast.xml` (Pages, `main` `/docs`) |
+| Downloads | GitHub Releases on `binoio/duobee` |
 
-`scripts/release.sh` publishes across both: it tags this repo, uploads assets to
-the public repo's Releases, and commits the regenerated appcast to its `docs/`.
+The repository **must remain public**: Sparkle fetches the feed and the app
+archive without credentials, and AGPL §6 requires Corresponding Source to be
+available for every published binary. To make that survive any future hosting
+change, `release.sh` also attaches a source archive of the tagged commit to
+each release, and stamps the commit SHA into the release body.
 
-The two repositories share no history, so a tag in `duobee-releases` points at
-that repo's own default branch rather than at source. `release.sh` therefore
-stamps the source repo and commit SHA into the published release body — that
-line is the only link from a shipped build back to what produced it.
+`scripts/release.sh` tags this repo, uploads assets to its Releases, and
+commits the regenerated appcast to `docs/` on `main`.
 
 ### Threat model for the public repo
 
@@ -31,7 +29,7 @@ DuoBee holds Duo authentication secrets, so its update channel is a path to
 every installed copy of a credential store. Worth being explicit about what
 protects it.
 
-**What write access to `duobee-releases` does *not* get an attacker.** Trust
+**What write access to the repo does *not* get an attacker.** Trust
 comes from the EdDSA signature, not from the transport or the hosting. Every
 archive is signed with a private key that exists only in the login Keychain of
 the release Mac, and each installed app verifies against the `SUPublicEDKey`
@@ -62,9 +60,9 @@ is deliberately no automated path that can sign a release. Keep it that way: a
 signing key in a CI secret is a signing key one repo compromise away from
 shipping malware to a credential manager.
 
-**Practical consequences.** Limit write access to `duobee-releases` to the same
-people who could publish from the release Mac — the public repo is not "just
-static files," it is the distribution channel. Protect its default branch.
+**Practical consequences.** Limit write access to the repo to the same
+people who could publish from the release Mac — it is not just source hosting,
+it is the distribution channel. Protect the default branch.
 Treat unexpected commits to `docs/` as an incident, not a mistake. And since a
 lost key is unrecoverable while a leaked key is catastrophic, back it up
 somewhere that is itself encrypted, and nowhere else.
@@ -88,7 +86,7 @@ xcode-select -p            # Xcode 15+ required; 26.6 was used to build 1.3.0
 
 ```zsh
 gh auth login
-gh repo view pubino/duobee-releases    # must succeed
+gh repo view binoio/duobee    # must succeed
 ```
 
 ### 3. Developer ID Application certificate
@@ -233,14 +231,14 @@ the appcast is committed, so Pages never advertises a download that 404s.
 ### 6. Verify
 
 ```zsh
-curl -sI https://pubino.github.io/duobee-releases/appcast.xml | head -1   # 200
-curl -s  https://pubino.github.io/duobee-releases/appcast.xml | grep enclosure
+curl -sI https://binoio.github.io/duobee/appcast.xml | head -1   # 200
+curl -s  https://binoio.github.io/duobee/appcast.xml | grep enclosure
 ```
 
 Pages takes a minute or two to redeploy. Then confirm the enclosure URL
 downloads **unauthenticated** — in a private browser window, or with `curl` and
-no token. That is the whole point of the two-repo split, and it is the one thing
-that silently breaks if the releases repo is ever flipped to private.
+no token. That silently breaks if the repo is ever flipped to private — which
+would also strip Pages and violate the AGPL source requirement.
 
 ---
 
@@ -277,5 +275,7 @@ after the fact:
   builds a DMG with `--dmg`. The stapled app is what gets zipped as the Sparkle
   enclosure — the zip must be created *after* stapling or the ticket is not
   inside it.
-- Users on 1.2.1 and earlier have no updater and must install 1.3.0 manually
-  once. A DMG is attached to the 1.3.0 release for that path.
+- No build earlier than 2.0.0 can update into 2.0.0: the bundle identifier
+  changed, so Sparkle treats it as a different application. 1.x users install
+  2.0.0 manually (a DMG is attached for that path) and move their database by
+  hand — see the 2.0.0 release notes.

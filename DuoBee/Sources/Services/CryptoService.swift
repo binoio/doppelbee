@@ -3,7 +3,7 @@
 //  DuoBee
 //
 //  Created on 2026-01-04.
-//  SPDX-License-Identifier: MIT
+//  SPDX-License-Identifier: AGPL-3.0-or-later
 //
 
 import Foundation

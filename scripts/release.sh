@@ -1,10 +1,12 @@
 #!/bin/zsh
 # Cut a DuoBee release: build, notarize, sign the appcast, and publish.
 #
-# DuoBee's source repo is private, but Sparkle fetches the appcast and the
-# update archive with no credentials. So artifacts are published to a separate
-# PUBLIC repo (pubino/duobee-releases): GitHub Pages serves docs/appcast.xml and
-# the release assets are downloaded from its GitHub Releases.
+# Source, releases, and the update feed all live in ONE public repo
+# (binoio/duobee): GitHub Pages serves docs/appcast.xml from main, and release
+# assets are downloaded from its GitHub Releases. The repo must stay public —
+# Sparkle fetches the feed and archive with no credentials, and AGPL §6
+# requires Corresponding Source to be available for every published binary.
+# Each release therefore also carries a source archive of the tagged commit.
 #
 # Everything runs locally. The Sparkle EdDSA private key lives in the login
 # Keychain and generate_appcast reads it implicitly — it is never exported, and
@@ -17,8 +19,8 @@
 #   2. Notary credentials (profile name must match NOTARY_PROFILE below):
 #        xcrun notarytool store-credentials notary \
 #          --apple-id <id> --team-id <team>
-#   3. gh auth login, with access to both duobee and duobee-releases.
-#   4. The public releases repo exists, with docs/ published via
+#   3. gh auth login, with push access to the repo.
+#   4. GitHub Pages enabled on the repo:
 #      Settings -> Pages -> source: main /docs.
 #
 # Usage:
@@ -30,7 +32,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 APP_NAME="DuoBee"
-RELEASES_REPO="${DUOBEE_RELEASES_REPO:-pubino/duobee-releases}"
+RELEASES_REPO="${DUOBEE_RELEASES_REPO:-binoio/duobee}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-notary}"
 BUILD_DIR="build"
 APP_PATH="$BUILD_DIR/export/$APP_NAME.app"
@@ -67,8 +69,8 @@ ZIP_PATH="$BUILD_DIR/$ZIP_NAME"
 NOTES_MD="ReleaseNotes/${APP_NAME}-${VERSION}.md"
 NOTES_HTML="ReleaseNotes/${APP_NAME}-${VERSION}.html"
 
-# Recorded in the published release body: the releases repo shares no history
-# with source, so this is the only link back to what was built.
+# Recorded in the published release body so a shipped build is traceable to
+# the exact commit that produced it, even if tags are ever moved.
 SOURCE_SHA=$(git rev-parse HEAD)
 SOURCE_REPO=$(git config --get remote.origin.url \
     | sed -E 's#(git@github.com:|https://github.com/)##; s#\.git$##')
@@ -190,6 +192,14 @@ echo "==> Packaging $ZIP_NAME"
 rm -f "$ZIP_PATH"
 ditto -c -k --keepParent "$APP_PATH" "$ZIP_PATH"
 
+# Corresponding Source for this exact build (AGPL §6). Attached to the release
+# as an asset so the source travels with the binary, independent of the repo
+# remaining reachable at this URL.
+SOURCE_TARBALL="$BUILD_DIR/${APP_NAME:l}-${VERSION}-source.tar.gz"
+echo "==> Packaging source archive"
+git archive --format=tar.gz --prefix="${APP_NAME:l}-${VERSION}/" \
+    -o "$SOURCE_TARBALL" HEAD
+
 # ---------------------------------------------------------------------------
 # Appcast
 # ---------------------------------------------------------------------------
@@ -252,12 +262,11 @@ git tag -a "$TAG" -m "${APP_NAME} ${VERSION}"
 git push origin "$TAG"
 
 DMG_PATH="$BUILD_DIR/${APP_NAME}-${VERSION}.dmg"
-assets=("$ZIP_PATH")
+assets=("$ZIP_PATH" "$SOURCE_TARBALL")
 [[ -f "$DMG_PATH" ]] && assets+=("$DMG_PATH")
 
-# The tag created in the releases repo points at that repo's default branch, not
-# at source — the two repos share no history. Stamp the source commit into the
-# body so a published build can still be traced back to what produced it.
+# Stamp the source commit into the body so a published build is traceable to
+# exactly what produced it.
 RELEASE_BODY="$BUILD_DIR/release-body-${VERSION}.md"
 {
     cat "$NOTES_MD"
@@ -285,3 +294,6 @@ echo "  appcast: $(/usr/libexec/PlistBuddy -c "Print :SUFeedURL" "$plist")"
 echo ""
 echo "GitHub Pages takes a minute to redeploy. Verify with:"
 echo "  curl -sI $(/usr/libexec/PlistBuddy -c "Print :SUFeedURL" "$plist") | head -1"
+echo ""
+echo "The appcast commit was pushed to origin/main from a side clone;"
+echo "run 'git pull' to fast-forward this checkout."

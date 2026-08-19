@@ -3,7 +3,7 @@
 //  DuoBee
 //
 //  Created on 2026-02-14.
-//  SPDX-License-Identifier: MIT
+//  SPDX-License-Identifier: AGPL-3.0-or-later
 //
 
 import SwiftUI
@@ -36,15 +36,30 @@ struct AboutView: View {
                 .font(.body)
                 .multilineTextAlignment(.center)
 
-            // Credits
+            // Appropriate Legal Notices (AGPL §5(d)): copyright, license,
+            // warranty disclaimer, and where to obtain source.
             VStack(spacing: 4) {
+                Text("Copyright © 2026 Michael Bino")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
                 Text("Based on DuoBreak by Jesse Naser")
                     .font(.caption)
                     .foregroundColor(.secondary)
 
-                Text("MIT License")
+                Text("Licensed under the GNU AGPL v3 or later. This is free software: you may change and redistribute it under the terms of that license. It comes with ABSOLUTELY NO WARRANTY.")
                     .font(.caption)
                     .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                HStack(spacing: 12) {
+                    Link("Source Code", destination: URL(string: "https://github.com/binoio/duobee")!)
+                        .font(.caption)
+                    Link("License", destination: URL(string: "https://www.gnu.org/licenses/agpl-3.0.html")!)
+                        .font(.caption)
+                }
+                .padding(.top, 4)
             }
             .padding(.top, 8)
 
@@ -57,6 +72,6 @@ struct AboutView: View {
             .keyboardShortcut(.escape, modifiers: [])
         }
         .padding(24)
-        .frame(width: 300, height: 340)
+        .frame(width: 320, height: 440)
     }
 }

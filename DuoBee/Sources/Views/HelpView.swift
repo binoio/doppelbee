@@ -3,7 +3,7 @@
 //  DuoBee
 //
 //  Created on 2026-01-04.
-//  SPDX-License-Identifier: MIT
+//  SPDX-License-Identifier: AGPL-3.0-or-later
 //
 
 import SwiftUI
@@ -101,7 +101,7 @@ struct HelpView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
 
-                Text("License: MIT")
+                Text("License: GNU AGPL v3 or later")
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .padding(.bottom)

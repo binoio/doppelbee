@@ -31,7 +31,7 @@ cd "$(dirname "$0")/.."
 
 # Configuration
 APP_NAME="DuoBee"
-BUNDLE_ID="edu.princeton.orfe.duobee"
+BUNDLE_ID="io.bino.duobee"
 NOTARY_PROFILE="${NOTARY_PROFILE:-notary}"
 BUILD_DIR="build"
 DERIVED_DATA="$BUILD_DIR/DerivedData"

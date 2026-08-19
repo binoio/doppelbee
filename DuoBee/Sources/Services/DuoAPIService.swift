@@ -3,7 +3,7 @@
 //  DuoBee
 //
 //  Created on 2026-01-04.
-//  SPDX-License-Identifier: MIT
+//  SPDX-License-Identifier: AGPL-3.0-or-later
 //
 
 import Foundation
@@ -12,7 +12,7 @@ import Security
 class DuoAPIService {
     /// Verbose request logging prints akey, pkey, and signature material, which are
     /// long-lived credentials. Off unless deliberately enabled with
-    /// `defaults write edu.princeton.orfe.duobee duoVerboseLogging -bool YES`.
+    /// `defaults write io.bino.duobee duoVerboseLogging -bool YES`.
     private static let verboseLoggingEnabled = UserDefaults.standard.bool(forKey: "duoVerboseLogging")
 
     private func verboseLog(_ message: @autoclosure () -> String) {

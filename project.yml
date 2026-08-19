@@ -1,6 +1,6 @@
 name: DuoBee
 options:
-  bundleIdPrefix: com.duobee
+  bundleIdPrefix: io.bino
   deploymentTarget:
     macOS: "14.0"
   developmentLanguage: en
@@ -29,7 +29,7 @@ targets:
         name: Copy App Icon
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: edu.princeton.orfe.duobee
+        PRODUCT_BUNDLE_IDENTIFIER: io.bino.duobee
         INFOPLIST_FILE: DuoBee/Resources/Info.plist
         CODE_SIGN_ENTITLEMENTS: DuoBee/Resources/DuoBee.entitlements
         MACOSX_DEPLOYMENT_TARGET: "14.0"
@@ -48,7 +48,7 @@ targets:
       - target: DuoBee
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: edu.princeton.orfe.duobee.tests
+        PRODUCT_BUNDLE_IDENTIFIER: io.bino.duobee.tests
         MACOSX_DEPLOYMENT_TARGET: "14.0"
         SWIFT_VERSION: "5.0"
         GENERATE_INFOPLIST_FILE: YES

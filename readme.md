@@ -6,29 +6,34 @@ DuoBee is a native macOS app that provides a macOS interface for managing your D
 
 ## ⚠️ Important Notice
 
-**This software is for educational and research purposes only.**
+DuoBee is free software; the AGPL places no restrictions on what you may use
+it for. The warnings below are advisory — they describe legal and policy
+exposure you take on, not conditions of the license:
 
-- **NOT affiliated with Duo Security, Inc. or Cisco Systems, Inc.**
-- Use may violate Duo's Terms of Service or your organization's security policies
-- Only use with systems you own or have explicit authorization to test
-- Users are solely responsible for compliance with applicable laws and policies
+- DuoBee is **NOT affiliated with Duo Security, Inc. or Cisco Systems, Inc.**
+- Using it may violate Duo's Terms of Service or your organization's security policies
+- Using it against systems you do not own or lack authorization to test may be illegal
+- You are solely responsible for compliance with applicable laws and policies
 
-**Intended for:** Personal backup of your own keys, academic research, authorized security testing
-**Not intended for:** Unauthorized access, bypassing security controls, policy violations
+It was built for personal backup of your own keys, academic research, and
+authorized security testing — not for unauthorized access, bypassing security
+controls, or policy violations.
 
 ---
 
 ## Quick Start
 
-Download the latest release from [the Releases page](https://github.com/pubino/duobee-releases/releases).
+Download the latest release from [the Releases page](https://github.com/binoio/duobee/releases).
 
-From 1.3.0 onward DuoBee updates itself: it checks for new versions on a
-schedule and via **DuoBee → Check for Updates…**, with the behavior configurable
-under Settings → Updates.
+DuoBee updates itself: it checks for new versions on a schedule and via
+**DuoBee → Check for Updates…**, with the behavior configurable under
+Settings → Updates.
 
-> **Upgrading from 1.2.1 or earlier:** those builds predate the updater and
-> cannot upgrade themselves. Download 1.3.0 manually once; updates are automatic
-> after that. Your database and keychain entries are untouched by the upgrade.
+> **Upgrading from 1.x:** version 2.0.0 changed the app's bundle identifier,
+> so it is a fresh install, not an upgrade — no earlier build will ever be
+> offered 2.0.0 automatically. Install 2.0.0 manually, then move your database
+> if you had one; see the 2.0.0 release notes for the exact steps. Saved
+> keychain passwords do not carry over; re-enter your database password once.
 
 ## Features
 
@@ -55,8 +60,8 @@ under Settings → Updates.
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/DuoBee.git
-cd DuoBee
+git clone https://github.com/binoio/duobee.git
+cd duobee
 
 # Build the app
 ./scripts/build.sh
@@ -179,10 +184,9 @@ DuoBee/
 ## Releasing
 
 See [RELEASING.md](RELEASING.md). Releases are cut locally — there is no CI that
-builds or publishes. Update artifacts go to the public
-[pubino/duobee-releases](https://github.com/pubino/duobee-releases) repository,
-because Sparkle fetches the feed and the archive without credentials and this
-repository is private.
+builds or publishes. Source, releases, and the Sparkle update feed all live in
+this public repository; every release also carries a source archive of the
+exact commit it was built from, as the AGPL requires.
 
 ## Credits
 
@@ -201,27 +205,31 @@ DuoBee reimplements the Duo activation protocol and HOTP generation from the ori
 
 ## License
 
-Copyright (c) 2026 The Trustees of Princeton University
+Copyright (c) 2026 Michael Bino
 
-This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for complete terms and important disclaimers.
+DuoBee is licensed under the **GNU Affero General Public License, version 3 or
+(at your option) any later version** (AGPL-3.0-or-later). See
+[LICENSE.md](LICENSE.md) for the full text and [NOTICE](NOTICE) for the
+derivation and attribution record.
+
+DuoBee is a modified work derived from
+[DuoBreak](https://github.com/JesseNaser/DuoBreak), Copyright (C) 2023 Jesse
+Naser, also licensed AGPL-3.0-or-later.
+
+Releases 1.0.0–1.3.0 were distributed under an MIT license with an incorrect
+copyright holder; both were corrected in 2.0.0. See [NOTICE](NOTICE).
 
 ## Disclaimer
 
-**Educational and Research Use Only**
+DuoBee was developed by studying the Duo Mobile authentication protocol (via
+DuoBreak's reverse engineering). It was built for personal backup of your own
+authentication keys, academic research into authentication protocols, and
+security testing with proper authorization.
 
-This software was developed through reverse engineering of the Duo Mobile authentication protocol for educational and research purposes. It is intended solely for:
-
-- Personal backup of authentication keys you own
-- Academic research into authentication protocols
-- Security research with proper authorization
-- Testing authentication systems you control
-
-**Important Warnings:**
+**Important warnings** (advisory — not license conditions):
 
 - This project is **NOT affiliated with, endorsed by, or sponsored by** Duo Security, Inc. or Cisco Systems, Inc.
 - Use of this software may **violate Duo's Terms of Service** or your organization's security policies
 - Unauthorized access to computer systems is **illegal** under applicable laws including the Computer Fraud and Abuse Act (CFAA)
-- Users are **solely responsible** for ensuring lawful and ethical use
-- The copyright holders assume **no liability** for misuse of this software
-
-**By using this software, you acknowledge these warnings and agree to use it only for lawful and ethical purposes in compliance with all applicable terms of service, policies, and regulations.**
+- You are **solely responsible** for ensuring lawful and ethical use
+- The software comes with **no warranty**, and the copyright holders assume **no liability** for misuse, as stated in the license

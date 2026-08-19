@@ -1,0 +1,35 @@
+DuoBee — NOTICE
+
+Copyright (c) 2026 Michael Bino
+
+DuoBee is free software, licensed under the GNU Affero General Public
+License, version 3 or (at your option) any later version
+(AGPL-3.0-or-later). See LICENSE.md for the full text.
+
+Derivation
+----------
+DuoBee is a modified work derived from DuoBreak:
+
+    DuoBreak — https://github.com/JesseNaser/DuoBreak
+    Copyright (C) 2023 Jesse Naser
+    Licensed under AGPL-3.0-or-later
+
+What was derived: the Duo activation protocol implementation (device
+enrollment and iOS device emulation, RSA SHA-512 signed push
+authentication, transaction handling) and the HOTP secret handling
+(base32 encoding of activation secrets), reimplemented in Swift from the
+original Python implementation.
+
+Date of modification (AGPL section 5(a)): DuoBee was developed from
+DuoBreak beginning 2026-01-04 and has been modified continuously since.
+This notice was recorded on 2026-08-18.
+
+Correction of record
+--------------------
+Releases 1.0.0 through 1.3.0 of DuoBee were distributed under an MIT
+license naming "The Trustees of Princeton University" as the copyright
+holder. Both statements were incorrect: the work is individually owned
+by Michael Bino, and as a work derived from DuoBreak it must be licensed
+under AGPL-3.0-or-later. The license and attribution were corrected on
+2026-08-18, effective from version 2.0.0. No release earlier than 2.0.0
+should be relied on for its stated licensing terms.
