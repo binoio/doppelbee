@@ -87,7 +87,7 @@ cd duobee
 ./scripts/test.sh
 ```
 
-The test suite includes 30+ unit tests covering encryption, HOTP generation, key management, and keychain integration.
+The test suite includes 80 unit tests covering encryption, HOTP generation, key management, keychain integration, and updater configuration.
 
 ## Usage
 
