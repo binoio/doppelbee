@@ -1,6 +1,6 @@
 # DuoBee
 
-DuoBee is a native macOS app that provides a macOS interface for managing your Duo Mobile authentication keys. It allows you to securely store and generate HOTP codes for Duo two-factor authentication without relying on your mobile device.
+DuoBee is a native macOS authenticator. It securely stores your authenticator keys and generates HOTP codes for two-factor authentication without relying on your mobile device.
 
 ---
 
@@ -148,7 +148,7 @@ To add a Duo key:
 
 1. Go to your Duo enrollment page and select "Add a new device"
 2. Choose "Tablet" → "Android"
-3. Click "I have Duo Mobile installed"
+3. Confirm the authenticator app is installed when asked
 4. Copy the activation URL (format: `https://m-xxx.duosecurity.com/activate/xxx`)
 5. In DuoBee, click "Add New Key" (⌘K)
 6. Paste the activation URL
@@ -221,7 +221,7 @@ copyright holder; both were corrected in 2.0.0. See [NOTICE](NOTICE).
 
 ## Disclaimer
 
-DuoBee was developed by studying the Duo Mobile authentication protocol (via
+DuoBee was developed by studying the underlying authentication protocol (via
 DuoBreak's reverse engineering). It was built for personal backup of your own
 authentication keys, academic research into authentication protocols, and
 security testing with proper authorization.
