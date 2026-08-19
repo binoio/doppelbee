@@ -33,7 +33,7 @@ struct HelpView: View {
                 Divider()
 
                 helpSection(title: "Getting Started", content: """
-                DuoBee is a Duo Mobile authenticator for macOS that generates one-time passwords (OTP) for two-factor authentication.
+                DuoBee is a native macOS authenticator that generates one-time passwords (OTP) for two-factor authentication.
 
                 To get started:
                 1. Create a new database with a secure password

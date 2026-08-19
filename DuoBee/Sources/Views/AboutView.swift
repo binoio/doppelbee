@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct AboutView: View {
-    @Environment(\.dismiss) private var dismiss
-
     var body: some View {
         VStack(spacing: 16) {
             // App Icon
@@ -32,7 +30,7 @@ struct AboutView: View {
                 .frame(width: 200)
 
             // Description
-            Text("A native macOS Duo Mobile authenticator")
+            Text("A native macOS authenticator")
                 .font(.body)
                 .multilineTextAlignment(.center)
 
@@ -62,16 +60,8 @@ struct AboutView: View {
                 .padding(.top, 4)
             }
             .padding(.top, 8)
-
-            Spacer()
-
-            // Close button
-            Button("Close") {
-                dismiss()
-            }
-            .keyboardShortcut(.escape, modifiers: [])
         }
         .padding(24)
-        .frame(width: 320, height: 440)
+        .frame(width: 320)
     }
 }

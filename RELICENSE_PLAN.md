@@ -1,8 +1,10 @@
 # Relicense and identifier change — plan
 
-**Status: in progress (2026-08-18). Parts A, B, and C are done. Part D is done
-except cutting the 2.0.0 release itself and the end-to-end verification that
-follows it. Distribution stays halted until those are done.**
+**Status: complete (2026-08-19). All parts done. 2.0.0 was published and
+verified end to end: feed reachable, EdDSA signature validates, a tampered
+archive is rejected, and a 1.9.9 → 2.0.0 install completed through Sparkle's
+sandboxed installer (installed copy is the notarized Developer ID build,
+stapled, strict codesign passes). Distribution is live.**
 
 This repository was reset to a single commit. The prior history, both GitHub
 repositories, and all published releases were deleted on 2026-08-18 because the
@@ -140,11 +142,15 @@ published and there are no users to migrate:
       existing installations must be replaced manually and will not carry over
       their database automatically.
 - [x] Run the full test suite (80 tests at time of writing).
-- [ ] Verify end to end before announcing: feed reachable, signature validates,
+- [x] Verify end to end before announcing: feed reachable, signature validates,
       a tampered archive is rejected, and an actual install completes through
       Sparkle's sandboxed installer. The install step is the one that fails
       quietly if entitlements are wrong — do not infer it from a successful
-      download.
+      download. Verified 2026-08-19: a 1.9.9 test build offered, downloaded,
+      installed, and relaunched as 2.0.0 through the sandboxed installer.
+      (Note: the install step fails silently if the app sits in a
+      TCC-protected folder such as Desktop — test from an unprotected
+      location like /Applications.)
 
 ---
 
