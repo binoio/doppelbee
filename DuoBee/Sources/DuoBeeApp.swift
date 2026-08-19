@@ -49,11 +49,15 @@ struct DuoBeeApp: App {
                 }
         }
 
+        // commandsRemoved() drops the Window-menu items these scenes would
+        // otherwise auto-register; they are opened from the app and Help
+        // menus via the command groups below.
         Window("DuoBee Help", id: "help") {
             HelpView()
         }
         .windowResizability(.contentSize)
         .defaultPosition(.center)
+        .commandsRemoved()
 
         Window("About DuoBee", id: "about") {
             AboutView()
@@ -61,6 +65,7 @@ struct DuoBeeApp: App {
         .windowResizability(.contentSize)
         .defaultPosition(.center)
         .windowStyle(.hiddenTitleBar)
+        .commandsRemoved()
 
         Settings {
             SettingsView(updaterViewModel: appDelegate.updaterViewModel)
