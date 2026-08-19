@@ -105,7 +105,7 @@ requires the Account Holder or Admin role on the team.
 
 ```zsh
 xcrun notarytool store-credentials notary \
-    --apple-id <apple-id> --team-id W7EJE9LZ23
+    --apple-id <apple-id> --team-id 43L352U8Y8
 xcrun notarytool history --keychain-profile notary   # must succeed
 ```
 
@@ -216,7 +216,7 @@ The working tree must be clean — `release.sh` will not tag an uncommitted stat
 ### 4. Dry run
 
 ```zsh
-TEAM_ID=W7EJE9LZ23 ./scripts/release.sh --dry-run
+TEAM_ID=43L352U8Y8 ./scripts/release.sh --dry-run
 ```
 
 This runs everything — preflight, tests, build, notarize, staple, all bundle
@@ -229,7 +229,7 @@ came out Apple-silicon-only and Intel Macs will never be offered the update.
 ### 5. Publish
 
 ```zsh
-TEAM_ID=W7EJE9LZ23 ./scripts/release.sh
+TEAM_ID=43L352U8Y8 ./scripts/release.sh
 ```
 
 Ordering is deliberate: the GitHub Release (and its asset) is created *before*
