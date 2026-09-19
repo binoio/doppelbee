@@ -63,7 +63,7 @@ let sizes: [(Int, String)] = [
 
 let outputDir = CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "."
 
-print("Generating DuoBee app icons...")
+print("Generating DoppelBee app icons...")
 for (size, filename) in sizes {
     let path = "\(outputDir)/\(filename)"
     generateIcon(size: CGSize(width: CGFloat(size), height: CGFloat(size)), filename: path)

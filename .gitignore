@@ -18,4 +18,4 @@ build/
 
 # Resolved package versions live inside the generated .xcodeproj and do not
 # survive `xcodegen generate`. project.yml pins exact versions instead.
-DuoBee.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+DoppelBee.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/

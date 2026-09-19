@@ -1,16 +1,18 @@
-# DuoBee
+# DoppelBee
 
-DuoBee is a native macOS authenticator. It securely stores your authenticator keys and generates HOTP codes for two-factor authentication without relying on your mobile device.
+DoppelBee is a native macOS authenticator. It securely stores your authenticator keys and generates HOTP codes for two-factor authentication without relying on your mobile device.
+
+Formerly published as **DuoBee** through version 2.0.1; renamed in 3.0.0.
 
 ---
 
 ## ⚠️ Important Notice
 
-DuoBee is free software; the AGPL places no restrictions on what you may use
+DoppelBee is free software; the AGPL places no restrictions on what you may use
 it for. The warnings below are advisory — they describe legal and policy
 exposure you take on, not conditions of the license:
 
-- DuoBee is **NOT affiliated with Duo Security, Inc. or Cisco Systems, Inc.**
+- DoppelBee is **NOT affiliated with Duo Security, Inc. or Cisco Systems, Inc.**
 - Using it may violate Duo's Terms of Service or your organization's security policies
 - Using it against systems you do not own or lack authorization to test may be illegal
 - You are solely responsible for compliance with applicable laws and policies
@@ -23,17 +25,19 @@ controls, or policy violations.
 
 ## Quick Start
 
-Download the latest release from [the Releases page](https://github.com/binoio/duobee/releases).
+Download the latest release from [the Releases page](https://github.com/binoio/doppelbee/releases).
 
-DuoBee updates itself: it checks for new versions on a schedule and via
-**DuoBee → Check for Updates…**, with the behavior configurable under
+DoppelBee updates itself: it checks for new versions on a schedule and via
+**DoppelBee → Check for Updates…**, with the behavior configurable under
 Settings → Updates.
 
-> **Upgrading from 1.x:** version 2.0.0 changed the app's bundle identifier,
-> so it is a fresh install, not an upgrade — no earlier build will ever be
-> offered 2.0.0 automatically. Install 2.0.0 manually, then move your database
-> if you had one; see the 2.0.0 release notes for the exact steps. Saved
-> keychain passwords do not carry over; re-enter your database password once.
+> **Upgrading from DuoBee (1.x or 2.x):** this project was published as
+> **DuoBee** through version 2.0.1. Version 3.0.0 renames it to DoppelBee and
+> changes the bundle identifier, so it is a fresh install, not an upgrade — no
+> DuoBee build will ever be offered 3.0.0 automatically. Install 3.0.0
+> manually, then move your database; see the 3.0.0 release notes for the exact
+> steps. Saved keychain passwords do not carry over; re-enter your database
+> password once.
 
 ## Features
 
@@ -60,8 +64,8 @@ Settings → Updates.
 
 ```bash
 # Clone the repository
-git clone https://github.com/binoio/duobee.git
-cd duobee
+git clone https://github.com/binoio/doppelbee.git
+cd doppelbee
 
 # Build the app
 ./scripts/build.sh
@@ -99,9 +103,9 @@ The test suite includes 80 unit tests covering encryption, HOTP generation, key 
 
 ### Settings
 
-Access Settings via **⌘,** or **DuoBee menu → Settings**:
+Access Settings via **⌘,** or **DoppelBee menu → Settings**:
 
-- **Launch at Login**: Start DuoBee automatically when you log in
+- **Launch at Login**: Start DoppelBee automatically when you log in
 - **Auto-unlock Database on Launch**: Automatically unlock using saved keychain password
 - **Database Location**: View and reveal your database file in Finder
 - **Change Password**: Update database encryption password
@@ -122,17 +126,17 @@ Access Settings via **⌘,** or **DuoBee menu → Settings**:
 - **Database Encryption**: AES-256-GCM encryption with password-based key derivation
 - **Keychain Storage**: Database password securely stored in macOS Keychain
 - **HOTP Generation**: Standards-compliant HMAC-SHA1 implementation using CryptoKit
-- **Database Location**: `~/Library/Application Support/DuoBee/duo.db`
+- **Database Location**: `~/Library/Application Support/DoppelBee/duo.db`
 
 ### Verified Duo Push
 
-Verified Duo Push exists to defeat MFA-fatigue and prompt-bombing attacks: it requires you to read a short code off the device you are logging in from and type it into the authenticator. DuoBee preserves that property.
+Verified Duo Push exists to defeat MFA-fatigue and prompt-bombing attacks: it requires you to read a short code off the device you are logging in from and type it into the authenticator. DoppelBee preserves that property.
 
 - Verification codes are **never** auto-confirmed, regardless of the "Auto-confirm Standard Pushes" setting or a key's per-key auto-confirm toggle. Auto-confirm applies to standard pushes only.
-- Codes are never guessed, prefilled, or derived — DuoBee has no access to the access device's screen, and approval requires you to enter the code by hand.
+- Codes are never guessed, prefilled, or derived — DoppelBee has no access to the access device's screen, and approval requires you to enter the code by hand.
 - Codes are validated locally for length and digits, then sent as part of the signed approval request. They are redacted from log output.
 
-**Entering the code.** You can respond without leaving whatever you are doing: click **Enter Code** on the notification, type the digits, then **Approve**. If your notification style is set to Banners, hover the banner to reveal the buttons; Alerts style always shows them. The push also appears in the DuoBee window with a code field, if you would rather answer there.
+**Entering the code.** You can respond without leaving whatever you are doing: click **Enter Code** on the notification, type the digits, then **Approve**. If your notification style is set to Banners, hover the banner to reveal the buttons; Alerts style always shows them. The push also appears in the DoppelBee window with a code field, if you would rather answer there.
 
 Each request shows the integration being logged into along with the username, IP address, and location behind it. Check these before approving — they are what distinguish your own login from one an attacker triggered.
 
@@ -150,7 +154,7 @@ To add a Duo key:
 2. Choose "Tablet" → "Android"
 3. Confirm the authenticator app is installed when asked
 4. Copy the activation URL (format: `https://m-xxx.duosecurity.com/activate/xxx`)
-5. In DuoBee, click "Add New Key" (⌘K)
+5. In DoppelBee, click "Add New Key" (⌘K)
 6. Paste the activation URL
 7. Optionally provide a custom name
 8. Click "Activate"
@@ -159,10 +163,10 @@ To add a Duo key:
 ## Project Structure
 
 ```
-DuoBee/
-├── DuoBee/
+DoppelBee/
+├── DoppelBee/
 │   ├── Sources/
-│   │   ├── DuoBeeApp.swift      # App entry point
+│   │   ├── DoppelBeeApp.swift      # App entry point
 │   │   ├── UpdaterViewModel.swift # Sparkle updater UI bindings
 │   │   ├── Models/              # Data models and database manager
 │   │   ├── Services/            # Crypto, keychain, HOTP, Duo API
@@ -190,29 +194,29 @@ exact commit it was built from, as the AGPL requires.
 
 ## Credits
 
-DuoBee is inspired by and based on the protocol implementation from [DuoBreak](https://github.com/JesseNaser/DuoBreak) by Jesse Naser.
+DoppelBee is inspired by and based on the protocol implementation from [DuoBreak](https://github.com/JesseNaser/DuoBreak) by Jesse Naser.
 
 **Original Work:**
 - [DuoBreak](https://github.com/JesseNaser/DuoBreak) - Python CLI tool by Jesse Naser
 - Duo activation protocol reverse engineering and HOTP implementation
 
-**DuoBee Implementation:**
+**DoppelBee Implementation:**
 - Native macOS Swift reimplementation using Apple frameworks
 - SwiftUI interface and macOS-specific features
 - CryptoKit-based encryption and HOTP generation
 
-DuoBee reimplements the Duo activation protocol and HOTP generation from the original DuoBreak Python tool using Apple's native frameworks (CryptoKit, Security, SwiftUI) for a native macOS experience.
+DoppelBee reimplements the Duo activation protocol and HOTP generation from the original DuoBreak Python tool using Apple's native frameworks (CryptoKit, Security, SwiftUI) for a native macOS experience.
 
 ## License
 
 Copyright (c) 2026 Michael Bino
 
-DuoBee is licensed under the **GNU Affero General Public License, version 3 or
+DoppelBee is licensed under the **GNU Affero General Public License, version 3 or
 (at your option) any later version** (AGPL-3.0-or-later). See
 [LICENSE.md](LICENSE.md) for the full text and [NOTICE](NOTICE) for the
 derivation and attribution record.
 
-DuoBee is a modified work derived from
+DoppelBee is a modified work derived from
 [DuoBreak](https://github.com/JesseNaser/DuoBreak), Copyright (C) 2023 Jesse
 Naser, also licensed AGPL-3.0-or-later.
 
@@ -221,7 +225,7 @@ copyright holder; both were corrected in 2.0.0. See [NOTICE](NOTICE).
 
 ## Disclaimer
 
-DuoBee was developed by studying the underlying authentication protocol (via
+DoppelBee was developed by studying the underlying authentication protocol (via
 DuoBreak's reverse engineering). It was built for personal backup of your own
 authentication keys, academic research into authentication protocols, and
 security testing with proper authorization.

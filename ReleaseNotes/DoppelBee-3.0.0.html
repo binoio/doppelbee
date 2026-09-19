@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    body {
+        font: -apple-system-body;
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+        margin: 0;
+        color: #1d1d1f;
+    }
+    h2 { font-size: 15px; margin: 0 0 8px; }
+    h3 { font-size: 13px; margin: 16px 0 4px; }
+    ul { margin: 4px 0 12px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin: 0 0 10px; }
+    pre {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 11px;
+        white-space: pre-wrap;
+        word-break: break-all;
+        margin: 4px 0 12px;
+    }
+    code { font-family: ui-monospace, Menlo, monospace; font-size: 11px; }
+    @media (prefers-color-scheme: dark) {
+        body { color: #f5f5f7; }
+    }
+</style>
+</head>
+<body>
+<h2>DoppelBee 3.0.0</h2>
+
+<p>This release renames the application from <strong>DuoBee</strong> to
+<strong>DoppelBee</strong>. There are no feature or security changes, but it
+is a breaking release: it cannot be installed as an upgrade over any DuoBee
+version.</p>
+
+<h3>Renamed to DoppelBee</h3>
+<p>The name "DuoBee" was close enough to the Duo product from Cisco Systems,
+Inc. to invite the inference of an affiliation that has never existed. This
+project is not affiliated with, endorsed by, or connected to Duo Security,
+Inc. or Cisco Systems, Inc., and the new name puts distance between the
+two.</p>
+
+<p>Nothing else changed with the name: the copyright holder, the derivation
+from DuoBreak, and the AGPL-3.0-or-later license are all unaffected. See the
+<code>NOTICE</code> file for the full record, including the former name.</p>
+
+<h3>What changes for you</h3>
+<p>The bundle identifier moved from <code>io.bino.duobee</code> to
+<code>io.bino.doppelbee</code>, and the update feed moved with the
+repository. As a consequence:</p>
+<ul>
+<li><strong>No DuoBee build will ever be offered this update
+automatically.</strong> macOS and Sparkle treat DoppelBee 3.0.0 as a different
+application. Install it manually and delete your old copy.</li>
+<li><strong>The DuoBee update feed stops working.</strong> Installed copies of
+DuoBee 2.x will stop finding updates; they keep working otherwise.</li>
+<li><strong>Your database does not carry over automatically.</strong> Export
+it from DuoBee (<strong>Database → Export</strong>) and import it in
+DoppelBee, or move the file by hand:
+<pre>from: ~/Library/Containers/io.bino.duobee/Data/Library/Application Support/DuoBee/duo.db
+to:   ~/Library/Containers/io.bino.doppelbee/Data/Library/Application Support/DoppelBee/duo.db</pre>
+Launch DoppelBee once first so the destination folder exists.</li>
+<li><strong>Your saved database password does not carry over.</strong> Enter
+it once in DoppelBee and it is saved again.</li>
+<li><strong>The verbose-logging default changed name.</strong> If you had set
+it, use <code>defaults write io.bino.doppelbee duoVerboseLogging -bool
+YES</code>.</li>
+</ul>
+
+<p>Once DoppelBee 3.0.0 is installed and your database is in place, updates
+are automatic again.</p>
+</body>
+</html>

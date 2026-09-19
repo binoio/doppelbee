@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build DuoBee from command line
+# Build DoppelBee from command line
 #
 # Usage:
 #   ./build.sh         # Normal build
@@ -12,17 +12,17 @@ cd "$(dirname "$0")/.."
 # Check if --clean flag is provided
 if [[ "$1" == "--clean" ]]; then
     echo "Cleaning build artifacts..."
-    xcodebuild clean -project DuoBee.xcodeproj -scheme DuoBee 2>&1 | grep -E "(CLEAN|success|error)" || true
+    xcodebuild clean -project DoppelBee.xcodeproj -scheme DoppelBee 2>&1 | grep -E "(CLEAN|success|error)" || true
     echo "Clean completed."
     echo ""
 fi
 
-echo "Building DuoBee..."
-xcodebuild -project DuoBee.xcodeproj \
-    -scheme DuoBee \
+echo "Building DoppelBee..."
+xcodebuild -project DoppelBee.xcodeproj \
+    -scheme DoppelBee \
     -configuration Debug \
     build
 
 echo ""
 echo "Build completed successfully!"
-echo "App location: ~/Library/Developer/Xcode/DerivedData/DuoBee-*/Build/Products/Debug/DuoBee.app"
+echo "App location: ~/Library/Developer/Xcode/DerivedData/DoppelBee-*/Build/Products/Debug/DoppelBee.app"

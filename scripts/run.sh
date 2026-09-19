@@ -1,5 +1,5 @@
 #!/bin/bash
-# Run DuoBee app
+# Run DoppelBee app
 #
 # Usage:
 #   ./run.sh              # Find and run existing build, build if not found
@@ -13,8 +13,8 @@ cd "$(dirname "$0")/.."
 
 # Kill any running instances if --kill flag is provided
 if [[ "$1" == "--kill" ]]; then
-    echo "Killing any running DuoBee instances..."
-    killall DuoBee 2>/dev/null || true
+    echo "Killing any running DoppelBee instances..."
+    killall DoppelBee 2>/dev/null || true
     echo "Performing clean build..."
     ./scripts/build.sh --clean
 elif [[ "$1" == "--clean" ]]; then
@@ -25,18 +25,18 @@ elif [[ "$1" == "--build" ]]; then
 fi
 
 # Find the app in DerivedData
-APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData/DuoBee-*/Build/Products/Debug/DuoBee.app -maxdepth 0 2>/dev/null | head -1)
+APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData/DoppelBee-*/Build/Products/Debug/DoppelBee.app -maxdepth 0 2>/dev/null | head -1)
 
 if [ -z "$APP_PATH" ]; then
-    echo "DuoBee.app not found. Building first..."
+    echo "DoppelBee.app not found. Building first..."
     ./scripts/build.sh
-    APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData/DuoBee-*/Build/Products/Debug/DuoBee.app -maxdepth 0 2>/dev/null | head -1)
+    APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData/DoppelBee-*/Build/Products/Debug/DoppelBee.app -maxdepth 0 2>/dev/null | head -1)
 fi
 
 if [ -z "$APP_PATH" ]; then
-    echo "Error: Could not find DuoBee.app"
+    echo "Error: Could not find DoppelBee.app"
     exit 1
 fi
 
-echo "Launching DuoBee from: $APP_PATH"
+echo "Launching DoppelBee from: $APP_PATH"
 open "$APP_PATH"

@@ -1,5 +1,10 @@
 # Relicense and identifier change — plan
 
+> **Historical record.** This document is kept as-is from August 2026 and
+> predates the 3.0.0 rename from DuoBee to DoppelBee. The product name, bundle
+> identifier, repository, and source paths it cites are the ones in effect at
+> the time; see `NOTICE` and the 3.0.0 release notes for what they are now.
+
 **Status: complete (2026-08-19). All parts done. 2.0.0 was published and
 verified end to end: feed reachable, EdDSA signature validates, a tampered
 archive is rejected, and a 1.9.9 → 2.0.0 install completed through Sparkle's

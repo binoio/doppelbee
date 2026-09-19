@@ -1,6 +1,6 @@
-# Releasing DuoBee
+# Releasing DoppelBee
 
-DuoBee auto-updates via [Sparkle](https://sparkle-project.org). Releases are cut
+DoppelBee auto-updates via [Sparkle](https://sparkle-project.org). Releases are cut
 **locally** — there is no CI that builds or publishes. Everything below runs on
 one designated release Mac.
 
@@ -10,9 +10,9 @@ Everything lives in **one public repository**:
 
 | | |
 |---|---|
-| Source + Artifacts | `binoio/duobee` (public) |
-| Update feed | `https://binoio.github.io/duobee/appcast.xml` (Pages, `main` `/docs`) |
-| Downloads | GitHub Releases on `binoio/duobee` |
+| Source + Artifacts | `binoio/doppelbee` (public) |
+| Update feed | `https://binoio.github.io/doppelbee/appcast.xml` (Pages, `main` `/docs`) |
+| Downloads | GitHub Releases on `binoio/doppelbee` |
 
 The repository **must remain public**: Sparkle fetches the feed and the app
 archive without credentials, and AGPL §6 requires Corresponding Source to be
@@ -23,9 +23,29 @@ each release, and stamps the commit SHA into the release body.
 `scripts/release.sh` tags this repo, uploads assets to its Releases, and
 commits the regenerated appcast to `docs/` on `main`.
 
+### One-time: the 3.0.0 rename
+
+Version 3.0.0 renamed the app from DuoBee to DoppelBee. Everything in this
+file already assumes the new names, but the GitHub side has to be moved by
+hand before 3.0.0 can be cut:
+
+1. Rename the repository to `doppelbee` (**Settings → General → Repository
+   name**). GitHub redirects the old `binoio/duobee` URLs, including the
+   release-asset downloads already referenced by historical appcast entries.
+2. Re-check **Settings → Pages**: source `main` `/docs`. The feed then serves
+   from `https://binoio.github.io/doppelbee/appcast.xml`, which is what
+   3.0.0's `SUFeedURL` points at. Pages does **not** redirect from the old
+   `.../duobee/appcast.xml`, so installed DuoBee 2.x copies stop finding
+   updates — that is expected and documented in the 3.0.0 release notes.
+3. Update the local remote: `git remote set-url origin
+   git@github.com:binoio/doppelbee.git`.
+
+The Sparkle signing key is unchanged, so nothing about key handling below
+differs because of the rename.
+
 ### Threat model for the public repo
 
-DuoBee holds Duo authentication secrets, so its update channel is a path to
+DoppelBee holds Duo authentication secrets, so its update channel is a path to
 every installed copy of a credential store. Worth being explicit about what
 protects it.
 
@@ -53,7 +73,7 @@ a second, independent check.
   inside the app. It is not a code path, but it is a phishing surface.
 
 **Where the real risk sits: the signing key.** Compromise of that key is the
-break that matters — it would let an attacker sign a malicious DuoBee that every
+break that matters — it would let an attacker sign a malicious DoppelBee that every
 installed copy accepts and installs, with access to the decrypted key database.
 It never leaves the release Mac's Keychain, is never exported to CI, and there
 is deliberately no automated path that can sign a release. Keep it that way: a
@@ -86,7 +106,7 @@ xcode-select -p            # Xcode 15+ required; 26.6 was used to build 1.3.0
 
 ```zsh
 gh auth login
-gh repo view binoio/duobee    # must succeed
+gh repo view binoio/doppelbee    # must succeed
 ```
 
 ### 3. Developer ID Application certificate
@@ -114,22 +134,22 @@ The profile name must be `notary`, or pass `NOTARY_PROFILE=<name>`.
 ### 5. Sparkle signing key
 
 **This is the one that cannot be recovered if lost.** It is the root of trust for
-every future update: without it, no installed copy of DuoBee can ever be updated
+every future update: without it, no installed copy of DoppelBee can ever be updated
 again. It is not the same thing as the Developer ID certificate, and Apple has no
 copy of it.
 
-DuoBee uses the maintainer's **shared** Sparkle key — the default login-Keychain
+DoppelBee uses the maintainer's **shared** Sparkle key — the default login-Keychain
 item that also signs updates for other projects (Kona, etc.). Do not delete or
-regenerate that item to "rotate" DuoBee's key: it would silently break updates
-for every other project signed with it. If DuoBee ever needs its own key, give
-it a separate item via `generate_keys --account DuoBee` and pass the same
+regenerate that item to "rotate" DoppelBee's key: it would silently break updates
+for every other project signed with it. If DoppelBee ever needs its own key, give
+it a separate item via `generate_keys --account DoppelBee` and pass the same
 `--account` to `generate_appcast` in `release.sh`.
 
 The tools live in the resolved package artifacts, so resolve first:
 
 ```zsh
-xcodebuild -resolvePackageDependencies -project DuoBee.xcodeproj \
-    -scheme DuoBee -derivedDataPath build/DerivedData
+xcodebuild -resolvePackageDependencies -project DoppelBee.xcodeproj \
+    -scheme DoppelBee -derivedDataPath build/DerivedData
 BIN=build/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin
 ```
 
@@ -142,21 +162,21 @@ No key is ever transferred between machines.
 "$BIN/generate_keys"          # prints the public key
 ```
 
-Paste the printed value into `SUPublicEDKey` in `DuoBee/Resources/Info.plist`,
+Paste the printed value into `SUPublicEDKey` in `DoppelBee/Resources/Info.plist`,
 commit it, and you are done. Valid only *before* the first Sparkle-enabled
-release — after that, changing the key orphans everyone already running DuoBee.
+release — after that, changing the key orphans everyone already running DoppelBee.
 
 **B. Import an existing key** (required once 1.3.0 has shipped, or to release
 from more than one Mac). On the Mac that has the key:
 
 ```zsh
-"$BIN/generate_keys" -x duobee-sparkle-key.txt
+"$BIN/generate_keys" -x doppelbee-sparkle-key.txt
 ```
 
 Transfer it over a secure channel, then on the release Mac:
 
 ```zsh
-"$BIN/generate_keys" -f duobee-sparkle-key.txt
+"$BIN/generate_keys" -f doppelbee-sparkle-key.txt
 ```
 
 Delete the exported file afterward — its contents are equivalent to the key
@@ -166,7 +186,7 @@ Either way, verify the app and the Keychain agree:
 
 ```zsh
 "$BIN/generate_keys" -p
-/usr/libexec/PlistBuddy -c "Print :SUPublicEDKey" DuoBee/Resources/Info.plist
+/usr/libexec/PlistBuddy -c "Print :SUPublicEDKey" DoppelBee/Resources/Info.plist
 ```
 
 These two **must** print the same string. `release.sh` refuses to proceed if they
@@ -176,7 +196,7 @@ with no error anywhere until users report that updates stopped working.
 ### 6. Back the key up
 
 ```zsh
-"$BIN/generate_keys" -x /path/to/secure/duobee-sparkle-key.txt
+"$BIN/generate_keys" -x /path/to/secure/doppelbee-sparkle-key.txt
 ```
 
 Store it in a password manager or an encrypted volume, then delete the file.
@@ -188,11 +208,11 @@ Do this once, now — not after the Mac fails.
 
 ### 1. Bump the version
 
-Both keys in `DuoBee/Resources/Info.plist`, kept identical:
+Both keys in `DoppelBee/Resources/Info.plist`, kept identical:
 
 ```zsh
-/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 1.4.0" DuoBee/Resources/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 1.4.0" DuoBee/Resources/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 1.4.0" DoppelBee/Resources/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 1.4.0" DoppelBee/Resources/Info.plist
 ```
 
 Sparkle compares `CFBundleVersion` and displays `CFBundleShortVersionString`.
@@ -202,12 +222,13 @@ Sparkle compares `CFBundleVersion` and displays `CFBundleShortVersionString`.
 
 Both files are required, named to match the version exactly:
 
-- `ReleaseNotes/DuoBee-<version>.md` — becomes the GitHub Release body
-- `ReleaseNotes/DuoBee-<version>.html` — embedded in the appcast and shown
+- `ReleaseNotes/DoppelBee-<version>.md` — becomes the GitHub Release body
+- `ReleaseNotes/DoppelBee-<version>.html` — embedded in the appcast and shown
   inside Sparkle's update dialog
 
-Copy the 1.3.0 pair as a starting point. The `.html` basename must match the zip
-basename, which is how `generate_appcast --embed-release-notes` attaches it.
+Copy the most recent pair as a starting point. The `.html` basename must match
+the zip basename, which is how `generate_appcast --embed-release-notes`
+attaches it.
 
 ### 3. Commit
 
@@ -238,8 +259,8 @@ the appcast is committed, so Pages never advertises a download that 404s.
 ### 6. Verify
 
 ```zsh
-curl -sI https://binoio.github.io/duobee/appcast.xml | head -1   # 200
-curl -s  https://binoio.github.io/duobee/appcast.xml | grep enclosure
+curl -sI https://binoio.github.io/doppelbee/appcast.xml | head -1   # 200
+curl -s  https://binoio.github.io/doppelbee/appcast.xml | grep enclosure
 ```
 
 Pages takes a minute or two to redeploy. Then confirm the enclosure URL

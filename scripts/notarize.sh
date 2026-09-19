@@ -1,7 +1,7 @@
 #!/bin/bash
-# Build, sign, and notarize DuoBee for distribution
+# Build, sign, and notarize DoppelBee for distribution
 #
-# Produces a signed, notarized, STAPLED build/export/DuoBee.app. That stapled
+# Produces a signed, notarized, STAPLED build/export/DoppelBee.app. That stapled
 # bundle is what scripts/release.sh zips as the Sparkle update enclosure, so the
 # app itself is notarized here rather than only the disk image.
 #
@@ -18,7 +18,7 @@
 #   TEAM_ID=<...> ./scripts/notarize.sh --dmg
 #
 # --use-existing-export skips the clean rebuild and packages whatever is already
-# at build/export/DuoBee.app. Use it to ship the exact bundle you tested: a
+# at build/export/DoppelBee.app. Use it to ship the exact bundle you tested: a
 # rebuild from identical source is not byte-identical, because Xcode embeds
 # build and signature timestamps.
 #
@@ -30,8 +30,8 @@ set -e
 cd "$(dirname "$0")/.."
 
 # Configuration
-APP_NAME="DuoBee"
-BUNDLE_ID="io.bino.duobee"
+APP_NAME="DoppelBee"
+BUNDLE_ID="io.bino.doppelbee"
 NOTARY_PROFILE="${NOTARY_PROFILE:-notary}"
 BUILD_DIR="build"
 DERIVED_DATA="$BUILD_DIR/DerivedData"
@@ -98,8 +98,8 @@ else
     # through a hashed DerivedData directory.
     echo "Building archive..."
     xcodebuild archive \
-        -project DuoBee.xcodeproj \
-        -scheme DuoBee \
+        -project DoppelBee.xcodeproj \
+        -scheme DoppelBee \
         -archivePath "$ARCHIVE_PATH" \
         -configuration Release \
         -derivedDataPath "$DERIVED_DATA" \

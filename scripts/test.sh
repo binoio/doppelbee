@@ -1,14 +1,14 @@
 #!/bin/bash
-# Run DuoBee test suite
+# Run DoppelBee test suite
 
 set -e
 
 cd "$(dirname "$0")/.."
 
-echo "Running DuoBee tests..."
+echo "Running DoppelBee tests..."
 xcodebuild test \
-    -project DuoBee.xcodeproj \
-    -scheme DuoBee \
+    -project DoppelBee.xcodeproj \
+    -scheme DoppelBee \
     -destination 'platform=macOS'
 
 echo ""

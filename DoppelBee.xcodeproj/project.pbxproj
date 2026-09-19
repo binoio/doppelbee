@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1AE9BDABEB6519D8027E4F09 /* AppVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C493137F042E702E4B4E1AF1 /* AppVersionTests.swift */; };
+		1C7809A133056124EDC9B5C9 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0766CA9DAB3F23658B88EAC9 /* CryptoService.swift */; };
+		2720DF6AC44DAB957A629EB2 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF8A89C08766ED19F422A7 /* HelpView.swift */; };
+		361CBB7A9D1E84271C298C63 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF239B535305A045CEF38DD5 /* AppVersion.swift */; };
+		56533B4A343C8DFCB969490C /* DuoDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947F996A605E61DE67CA1919 /* DuoDatabaseManager.swift */; };
+		5BA30ED7B77C282BCE7061AA /* DoppelBeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D41FA8A3715CA93D8CD380 /* DoppelBeeApp.swift */; };
+		5D26CC1ED35CC848B6274CDD /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EDA12B4276C96698BB09AD /* ChangePasswordView.swift */; };
+		6039C42954A2DECC73A02ED3 /* DuoDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DE61D3C52DD3AE949E076 /* DuoDatabase.swift */; };
+		65179605AB9F61F36DA2395B /* UpdaterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4C86D78185A4F48035688 /* UpdaterViewModel.swift */; };
+		714E3DB23E6F0A0B7679E60A /* HOTPGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC298E228ECF5761FB3F86A1 /* HOTPGenerator.swift */; };
+		75EA3EA60694B71B1768853C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDD1719B0364B7D3B58A203 /* AboutView.swift */; };
+		7D191E81FFFB1167B59A3415 /* DuoPushServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A417376025575986442AA80A /* DuoPushServiceTests.swift */; };
+		7F046B5177E97E56E1C83773 /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439EEF6F65B6547DBD3CAECA /* KeychainServiceTests.swift */; };
+		98E7BA5038E3D98E8FFCF587 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 33FD69F86B0B5925CF0AA18E /* Sparkle */; };
+		A2E571C0B7DCA0B334872299 /* CryptoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0F4490BC0A68DFFB8077E /* CryptoServiceTests.swift */; };
+		A8AE7DED93505CBB240737E7 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42798AAC749A34E17A2DF0 /* KeychainService.swift */; };
+		BBF0CED8BB6277CCD70C29F8 /* DuoAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009547EBCC7C9E7483F536B2 /* DuoAPIService.swift */; };
+		BE047552483586C4E48EAC78 /* DuoPushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3305056B2C6B283548D52BA /* DuoPushService.swift */; };
+		BFF318057591591EAD4DA517 /* DuoAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF44190E0B08AD7FE72942A6 /* DuoAPIServiceTests.swift */; };
+		CB380D7E8238012FFAFDED3F /* DuoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5404AC6D832C0EB662D38A2F /* DuoKey.swift */; };
+		D4319CA8887740DF5903CEDD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB152F63F06842EC1CCB90 /* ContentView.swift */; };
+		D6FF93D4668F5B98D30FFBC3 /* UpdaterConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867D5839B5FE4197BDF885B6 /* UpdaterConfigurationTests.swift */; };
+		E81A0673A7FB2102F1469087 /* DuoDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B991D77763A1FDD0AC89D /* DuoDatabaseTests.swift */; };
+		E9C2BEC8E45D6A05DC6E6FF2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244BA33F03B551807AFE18F /* SettingsView.swift */; };
+		F670644AB448B45B12991D22 /* HOTPGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB8A8C09AB37D9FC5A8AE1 /* HOTPGeneratorTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3DD92FAAB9AAF831A4719AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E6525B705867A387910B4B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D0E3836A1BA2AB4E1849B67;
+			remoteInfo = DoppelBee;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		009547EBCC7C9E7483F536B2 /* DuoAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoAPIService.swift; sourceTree = "<group>"; };
+		03D4C86D78185A4F48035688 /* UpdaterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterViewModel.swift; sourceTree = "<group>"; };
+		0766CA9DAB3F23658B88EAC9 /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
+		27DF8A89C08766ED19F422A7 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		29205F3799D1DAB92BC273D0 /* DoppelBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoppelBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36EDA12B4276C96698BB09AD /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		3DDD1719B0364B7D3B58A203 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		439EEF6F65B6547DBD3CAECA /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
+		52D41FA8A3715CA93D8CD380 /* DoppelBeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoppelBeeApp.swift; sourceTree = "<group>"; };
+		5404AC6D832C0EB662D38A2F /* DuoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoKey.swift; sourceTree = "<group>"; };
+		867D5839B5FE4197BDF885B6 /* UpdaterConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterConfigurationTests.swift; sourceTree = "<group>"; };
+		947F996A605E61DE67CA1919 /* DuoDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoDatabaseManager.swift; sourceTree = "<group>"; };
+		A417376025575986442AA80A /* DuoPushServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoPushServiceTests.swift; sourceTree = "<group>"; };
+		AF239B535305A045CEF38DD5 /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
+		B97DE61D3C52DD3AE949E076 /* DuoDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoDatabase.swift; sourceTree = "<group>"; };
+		BF42798AAC749A34E17A2DF0 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		C0AB152F63F06842EC1CCB90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C493137F042E702E4B4E1AF1 /* AppVersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionTests.swift; sourceTree = "<group>"; };
+		D08B991D77763A1FDD0AC89D /* DuoDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoDatabaseTests.swift; sourceTree = "<group>"; };
+		D2AEB7B398F98103D73E9E6D /* DoppelBeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoppelBeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E244BA33F03B551807AFE18F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E3305056B2C6B283548D52BA /* DuoPushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoPushService.swift; sourceTree = "<group>"; };
+		EC298E228ECF5761FB3F86A1 /* HOTPGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTPGenerator.swift; sourceTree = "<group>"; };
+		EF44190E0B08AD7FE72942A6 /* DuoAPIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoAPIServiceTests.swift; sourceTree = "<group>"; };
+		EFE0F4490BC0A68DFFB8077E /* CryptoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoServiceTests.swift; sourceTree = "<group>"; };
+		F0DB8A8C09AB37D9FC5A8AE1 /* HOTPGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTPGeneratorTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0950F5C19CCF2469C08007D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98E7BA5038E3D98E8FFCF587 /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6B78F6198723CB91E961B402 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AF239B535305A045CEF38DD5 /* AppVersion.swift */,
+				52D41FA8A3715CA93D8CD380 /* DoppelBeeApp.swift */,
+				03D4C86D78185A4F48035688 /* UpdaterViewModel.swift */,
+				D590A558D3AF60274EE073A4 /* Models */,
+				7FFC27F9593E014283951416 /* Services */,
+				E7D58E3410AEA6468D780C16 /* Views */,
+			);
+			name = Sources;
+			path = DoppelBee/Sources;
+			sourceTree = "<group>";
+		};
+		7C37076F3047333C136E59B3 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C493137F042E702E4B4E1AF1 /* AppVersionTests.swift */,
+				EFE0F4490BC0A68DFFB8077E /* CryptoServiceTests.swift */,
+				EF44190E0B08AD7FE72942A6 /* DuoAPIServiceTests.swift */,
+				D08B991D77763A1FDD0AC89D /* DuoDatabaseTests.swift */,
+				A417376025575986442AA80A /* DuoPushServiceTests.swift */,
+				F0DB8A8C09AB37D9FC5A8AE1 /* HOTPGeneratorTests.swift */,
+				439EEF6F65B6547DBD3CAECA /* KeychainServiceTests.swift */,
+				867D5839B5FE4197BDF885B6 /* UpdaterConfigurationTests.swift */,
+			);
+			name = Tests;
+			path = DoppelBee/Tests;
+			sourceTree = "<group>";
+		};
+		7FFC27F9593E014283951416 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0766CA9DAB3F23658B88EAC9 /* CryptoService.swift */,
+				009547EBCC7C9E7483F536B2 /* DuoAPIService.swift */,
+				E3305056B2C6B283548D52BA /* DuoPushService.swift */,
+				EC298E228ECF5761FB3F86A1 /* HOTPGenerator.swift */,
+				BF42798AAC749A34E17A2DF0 /* KeychainService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		86A6D7E41E9206763ADFA77E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29205F3799D1DAB92BC273D0 /* DoppelBee.app */,
+				D2AEB7B398F98103D73E9E6D /* DoppelBeeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D590A558D3AF60274EE073A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B97DE61D3C52DD3AE949E076 /* DuoDatabase.swift */,
+				947F996A605E61DE67CA1919 /* DuoDatabaseManager.swift */,
+				5404AC6D832C0EB662D38A2F /* DuoKey.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E7D58E3410AEA6468D780C16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3DDD1719B0364B7D3B58A203 /* AboutView.swift */,
+				36EDA12B4276C96698BB09AD /* ChangePasswordView.swift */,
+				C0AB152F63F06842EC1CCB90 /* ContentView.swift */,
+				27DF8A89C08766ED19F422A7 /* HelpView.swift */,
+				E244BA33F03B551807AFE18F /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F3331E71CE051354A579DBAF = {
+			isa = PBXGroup;
+			children = (
+				6B78F6198723CB91E961B402 /* Sources */,
+				7C37076F3047333C136E59B3 /* Tests */,
+				86A6D7E41E9206763ADFA77E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D0E3836A1BA2AB4E1849B67 /* DoppelBee */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43620B30E2A4D0A7ECCAE0B0 /* Build configuration list for PBXNativeTarget "DoppelBee" */;
+			buildPhases = (
+				1FA317C74EC7558818A95968 /* Copy App Icon */,
+				CBE4300949A4BDD9B5C97751 /* Sources */,
+				0950F5C19CCF2469C08007D6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DoppelBee;
+			packageProductDependencies = (
+				33FD69F86B0B5925CF0AA18E /* Sparkle */,
+			);
+			productName = DoppelBee;
+			productReference = 29205F3799D1DAB92BC273D0 /* DoppelBee.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C7A14069F13E8D049FC2E132 /* DoppelBeeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD610DB96819E06C26BAEC16 /* Build configuration list for PBXNativeTarget "DoppelBeeTests" */;
+			buildPhases = (
+				01DA138AAB2404C0740E2B11 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20919C3AFD2AC332417D48B4 /* PBXTargetDependency */,
+			);
+			name = DoppelBeeTests;
+			packageProductDependencies = (
+			);
+			productName = DoppelBeeTests;
+			productReference = D2AEB7B398F98103D73E9E6D /* DoppelBeeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E6525B705867A387910B4B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = D7043D9D83906BC1A2589B0B /* Build configuration list for PBXProject "DoppelBee" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F3331E71CE051354A579DBAF;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4ADE06ED3FCB50D5E0273B91 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 86A6D7E41E9206763ADFA77E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D0E3836A1BA2AB4E1849B67 /* DoppelBee */,
+				C7A14069F13E8D049FC2E132 /* DoppelBeeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1FA317C74EC7558818A95968 /* Copy App Icon */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy App Icon";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Copy app icon to Resources folder in app bundle\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Contents/Resources\"\ncp \"${SRCROOT}/DoppelBee/Resources/AppIcon.icns\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Contents/Resources/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01DA138AAB2404C0740E2B11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AE9BDABEB6519D8027E4F09 /* AppVersionTests.swift in Sources */,
+				A2E571C0B7DCA0B334872299 /* CryptoServiceTests.swift in Sources */,
+				BFF318057591591EAD4DA517 /* DuoAPIServiceTests.swift in Sources */,
+				E81A0673A7FB2102F1469087 /* DuoDatabaseTests.swift in Sources */,
+				7D191E81FFFB1167B59A3415 /* DuoPushServiceTests.swift in Sources */,
+				F670644AB448B45B12991D22 /* HOTPGeneratorTests.swift in Sources */,
+				7F046B5177E97E56E1C83773 /* KeychainServiceTests.swift in Sources */,
+				D6FF93D4668F5B98D30FFBC3 /* UpdaterConfigurationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBE4300949A4BDD9B5C97751 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75EA3EA60694B71B1768853C /* AboutView.swift in Sources */,
+				361CBB7A9D1E84271C298C63 /* AppVersion.swift in Sources */,
+				5D26CC1ED35CC848B6274CDD /* ChangePasswordView.swift in Sources */,
+				D4319CA8887740DF5903CEDD /* ContentView.swift in Sources */,
+				1C7809A133056124EDC9B5C9 /* CryptoService.swift in Sources */,
+				5BA30ED7B77C282BCE7061AA /* DoppelBeeApp.swift in Sources */,
+				BBF0CED8BB6277CCD70C29F8 /* DuoAPIService.swift in Sources */,
+				6039C42954A2DECC73A02ED3 /* DuoDatabase.swift in Sources */,
+				56533B4A343C8DFCB969490C /* DuoDatabaseManager.swift in Sources */,
+				CB380D7E8238012FFAFDED3F /* DuoKey.swift in Sources */,
+				BE047552483586C4E48EAC78 /* DuoPushService.swift in Sources */,
+				714E3DB23E6F0A0B7679E60A /* HOTPGenerator.swift in Sources */,
+				2720DF6AC44DAB957A629EB2 /* HelpView.swift in Sources */,
+				A8AE7DED93505CBB240737E7 /* KeychainService.swift in Sources */,
+				E9C2BEC8E45D6A05DC6E6FF2 /* SettingsView.swift in Sources */,
+				65179605AB9F61F36DA2395B /* UpdaterViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		20919C3AFD2AC332417D48B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D0E3836A1BA2AB4E1849B67 /* DoppelBee */;
+			targetProxy = 3DD92FAAB9AAF831A4719AE7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E6D22C87329366FB9FBC301 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.bino.doppelbee.tests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoppelBee.app/Contents/MacOS/DoppelBee";
+			};
+			name = Release;
+		};
+		3A9A625532D254E133300AB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoppelBee/Resources/DoppelBee.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DoppelBee/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.bino.doppelbee;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		57C35B0E9B5731DF8F6B1E91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B04B17F5669704497F1AC5E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CFC9034FFEC306EE288665F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoppelBee/Resources/DoppelBee.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DoppelBee/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.bino.doppelbee;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E074C0A40F16FE9EF42FCDB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.bino.doppelbee.tests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoppelBee.app/Contents/MacOS/DoppelBee";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		43620B30E2A4D0A7ECCAE0B0 /* Build configuration list for PBXNativeTarget "DoppelBee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFC9034FFEC306EE288665F2 /* Debug */,
+				3A9A625532D254E133300AB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BD610DB96819E06C26BAEC16 /* Build configuration list for PBXNativeTarget "DoppelBeeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E074C0A40F16FE9EF42FCDB3 /* Debug */,
+				1E6D22C87329366FB9FBC301 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D7043D9D83906BC1A2589B0B /* Build configuration list for PBXProject "DoppelBee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57C35B0E9B5731DF8F6B1E91 /* Debug */,
+				B04B17F5669704497F1AC5E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4ADE06ED3FCB50D5E0273B91 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = exactVersion;
+				version = 2.9.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		33FD69F86B0B5925CF0AA18E /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4ADE06ED3FCB50D5E0273B91 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 5E6525B705867A387910B4B4 /* Project object */;
+}

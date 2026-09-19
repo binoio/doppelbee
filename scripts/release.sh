@@ -1,8 +1,8 @@
 #!/bin/zsh
-# Cut a DuoBee release: build, notarize, sign the appcast, and publish.
+# Cut a DoppelBee release: build, notarize, sign the appcast, and publish.
 #
 # Source, releases, and the update feed all live in ONE public repo
-# (binoio/duobee): GitHub Pages serves docs/appcast.xml from main, and release
+# (binoio/doppelbee): GitHub Pages serves docs/appcast.xml from main, and release
 # assets are downloaded from its GitHub Releases. The repo must stay public —
 # Sparkle fetches the feed and archive with no credentials, and AGPL §6
 # requires Corresponding Source to be available for every published binary.
@@ -15,7 +15,7 @@
 # One-time setup:
 #   1. Sparkle EdDSA key pair in the login Keychain:
 #        build/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_keys
-#      then paste the printed public key into DuoBee/Resources/Info.plist.
+#      then paste the printed public key into DoppelBee/Resources/Info.plist.
 #   2. Notary credentials (profile name must match NOTARY_PROFILE below):
 #        xcrun notarytool store-credentials notary \
 #          --apple-id <id> --team-id <team>
@@ -31,8 +31,8 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-APP_NAME="DuoBee"
-RELEASES_REPO="${DUOBEE_RELEASES_REPO:-binoio/duobee}"
+APP_NAME="DoppelBee"
+RELEASES_REPO="${DOPPELBEE_RELEASES_REPO:-binoio/doppelbee}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-notary}"
 BUILD_DIR="build"
 APP_PATH="$BUILD_DIR/export/$APP_NAME.app"
@@ -61,8 +61,8 @@ echo "==> Preflight"
 command -v xcodegen >/dev/null || die "xcodegen not found"
 xcodegen generate >/dev/null
 
-VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" DuoBee/Resources/Info.plist)
-BUILD_VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" DuoBee/Resources/Info.plist)
+VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" DoppelBee/Resources/Info.plist)
+BUILD_VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" DoppelBee/Resources/Info.plist)
 TAG="v${VERSION}"
 ZIP_NAME="${APP_NAME}-${VERSION}.zip"
 ZIP_PATH="$BUILD_DIR/$ZIP_NAME"
@@ -87,7 +87,7 @@ echo "    source  ${SOURCE_REPO}@${SOURCE_SHA:0:12}"
 [[ -z "$(git status --porcelain)" ]] || die "working tree is dirty; commit first"
 
 if git rev-parse "$TAG" >/dev/null 2>&1; then
-    die "tag $TAG already exists — bump the version in DuoBee/Resources/Info.plist"
+    die "tag $TAG already exists — bump the version in DoppelBee/Resources/Info.plist"
 fi
 
 # Earlier releases used a bare '1.1.1' tag; keep the v-prefix consistent now.
@@ -111,7 +111,7 @@ gh repo view "$RELEASES_REPO" >/dev/null 2>&1 || \
 # Resolve packages now so the Sparkle tools exist for the key check below,
 # rather than discovering a key mismatch after a ten-minute notarization.
 xcodebuild -resolvePackageDependencies \
-    -project DuoBee.xcodeproj -scheme DuoBee \
+    -project DoppelBee.xcodeproj -scheme DoppelBee \
     -derivedDataPath "$BUILD_DIR/DerivedData" >/dev/null 2>&1 || \
     die "failed to resolve Swift package dependencies"
 
@@ -126,9 +126,9 @@ KEYCHAIN_KEY=$("$SPARKLE_BIN/generate_keys" -p 2>/dev/null) || \
     die "no Sparkle signing key in this Mac's login Keychain.
        Either import the existing one:  $SPARKLE_BIN/generate_keys -f <key-file>
        or generate a new one:           $SPARKLE_BIN/generate_keys
-       (a new key requires updating SUPublicEDKey in DuoBee/Resources/Info.plist)"
+       (a new key requires updating SUPublicEDKey in DoppelBee/Resources/Info.plist)"
 
-PLIST_KEY=$(/usr/libexec/PlistBuddy -c "Print :SUPublicEDKey" DuoBee/Resources/Info.plist)
+PLIST_KEY=$(/usr/libexec/PlistBuddy -c "Print :SUPublicEDKey" DoppelBee/Resources/Info.plist)
 [[ "$PLIST_KEY" == "$KEYCHAIN_KEY" ]] || die "Sparkle key mismatch — updates signed here would be rejected.
        Info.plist SUPublicEDKey: $PLIST_KEY
        this Mac's Keychain key:  $KEYCHAIN_KEY

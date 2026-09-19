@@ -1,6 +1,6 @@
-# DuoBee Development Notes
+# DoppelBee Development Notes
 
-**DuoBee** is a native macOS application for managing Duo authentication keys, inspired by the original [DuoBreak](https://github.com/JesseNaser/DuoBreak) Python CLI tool.
+**DoppelBee** is a native macOS application for managing Duo authentication keys, inspired by the original [DuoBreak](https://github.com/JesseNaser/DuoBreak) Python CLI tool.
 
 ## Project Status: All Features Complete & Working ✅
 
@@ -45,11 +45,11 @@ All primary features have been successfully implemented and tested:
 
 **Credits:**
 - Original DuoBreak protocol implementation by Jesse Naser
-- DuoBee is a native macOS reimplementation using Apple frameworks
+- DoppelBee is a native macOS reimplementation using Apple frameworks
 
 ## Key Technical Details
 
-- **Database**: AES-GCM encrypted JSON in `~/Library/Application Support/DuoBee/duo.db`
+- **Database**: AES-GCM encrypted JSON in `~/Library/Application Support/DoppelBee/duo.db`
 - **HOTP**: CryptoKit HMAC-SHA1 with base32-encoded secrets (matches Python implementation)
 - **Keychain**: Password stored in macOS Keychain, auto-unlock optional
 - **Activation**: Full iOS Duo Mobile device emulation (v4.73.0.873.1)
@@ -61,8 +61,8 @@ All primary features have been successfully implemented and tested:
 ## Architecture
 
 ```
-DuoBee/Sources/
-├── DuoBeeApp.swift          # App entry, menu commands
+DoppelBee/Sources/
+├── DoppelBeeApp.swift          # App entry, menu commands
 ├── Models/
 │   ├── DuoKey.swift         # Key model with RSA support
 │   ├── DuoDatabase.swift    # Database model
