@@ -140,35 +140,83 @@
             margin: 0;
         }
 
-        .specs {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 30px;
-            margin: 40px 0;
-            border: 1px solid var(--border);
+        .screenshots {
+            margin: 72px 0 0;
         }
 
-        .specs h2 {
-            margin-top: 0;
+        .screenshots h2 {
+            text-align: center;
+            margin: 0 0 8px;
         }
 
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .spec-item label {
-            display: block;
-            font-size: 0.85rem;
+        .screenshots .lede {
+            text-align: center;
             color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 4px;
+            margin: 0 0 36px;
         }
 
-        .spec-item span {
-            font-weight: 600;
+        .shot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+
+        figure.shot {
+            margin: 0;
+        }
+
+        figure.shot img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            cursor: zoom-in;
+            transition: transform 0.2s;
+        }
+
+        figure.shot img:hover {
+            transform: scale(1.01);
+        }
+
+        figure.shot figcaption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            line-height: 1.4;
+        }
+
+        /* CSS-only lightbox: :target shows it, clicking anywhere dismisses. */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            cursor: zoom-out;
+        }
+
+        .lightbox:target {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 92%;
+            max-height: 92%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            figure.shot img { transition: none; }
+            figure.shot img:hover { transform: none; }
         }
 
         footer {
@@ -222,27 +270,29 @@
             </div>
         </section>
 
-        <section class="specs">
-            <h2>Requirements</h2>
-            <div class="specs-grid">
-                <div class="spec-item">
-                    <label>Platform</label>
-                    <span>macOS 14.0 Sonoma or later</span>
-                </div>
-                <div class="spec-item">
-                    <label>Architecture</label>
-                    <span>Apple silicon &amp; Intel</span>
-                </div>
-                <div class="spec-item">
-                    <label>Signing</label>
-                    <span>Developer ID, notarized</span>
-                </div>
-                <div class="spec-item">
-                    <label>License</label>
-                    <span>AGPL-3.0-or-later</span>
-                </div>
+
+        <section class="screenshots">
+            <h2>Screenshots</h2>
+            <p class="lede">macOS 14 Sonoma or later, Apple silicon and Intel.</p>
+            <div class="shot-grid">
+                <figure class="shot">
+                    <a href="#shot-first-run"><img src="images/first-run.png" alt="DoppelBee's first-run screen, offering to create a database or migrate an existing one" loading="lazy"></a>
+                    <figcaption>First run. Set a password, or bring across a database from an earlier install.</figcaption>
+                </figure>
+                <figure class="shot">
+                    <a href="#shot-help"><img src="images/help.png" alt="DoppelBee's built-in help window" loading="lazy"></a>
+                    <figcaption>Help is built in — enrolling keys, where the database lives, how it is encrypted.</figcaption>
+                </figure>
+                <figure class="shot">
+                    <a href="#shot-about"><img src="images/about.png" alt="DoppelBee's about window showing version 3.0.0 and its licence" loading="lazy"></a>
+                    <figcaption>Free software, AGPL-3.0-or-later, with source a click away.</figcaption>
+                </figure>
             </div>
         </section>
+
+        <div id="shot-first-run" class="lightbox" onclick="location.href='#';"><img src="images/first-run.png" alt=""></div>
+        <div id="shot-help" class="lightbox" onclick="location.href='#';"><img src="images/help.png" alt=""></div>
+        <div id="shot-about" class="lightbox" onclick="location.href='#';"><img src="images/about.png" alt=""></div>
 
         <footer>
             <p>&copy; 2026 Michael Bino</p>
