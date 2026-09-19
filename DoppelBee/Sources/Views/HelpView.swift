@@ -37,12 +37,12 @@ struct HelpView: View {
 
                 To get started:
                 1. Create a new database with a secure password
-                2. Add your first Duo key using the "Add New Key" button or Cmd+K
+                2. Add your first key using the "Add New Key" button or Cmd+K
                 3. Generate OTPs by selecting a key from the list
                 """)
 
                 helpSection(title: "Adding Keys", content: """
-                You can add Duo keys in several ways:
+                You can add keys in several ways:
 
                 • Manual Entry: Enter the activation code and host name manually
                 • QR Code: Scan a QR code containing duo:// URL
@@ -53,7 +53,7 @@ struct HelpView: View {
                 """)
 
                 helpSection(title: "Database Security", content: """
-                Your Duo keys are stored in an encrypted database using AES-GCM encryption.
+                Your keys are stored in an encrypted database using AES-GCM encryption.
 
                 • Database location: ~/Library/Application Support/DoppelBee/duo.db
                 • Password stored securely in macOS Keychain

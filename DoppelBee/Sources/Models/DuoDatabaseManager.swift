@@ -202,6 +202,42 @@ class DuoDatabaseManager: ObservableObject {
         try saveCurrentDatabase()
     }
 
+    /// Adopt a database left behind by an earlier identity of the app.
+    ///
+    /// Distinct from `importDatabase(from:)`, which assumes a database already
+    /// exists here and reuses its Keychain password. A migration runs on first
+    /// launch, when there is no password yet, so the old one is supplied by the
+    /// user and saved only once the file has decrypted successfully.
+    ///
+    /// Nothing is written until the source has been decrypted and decoded, so a
+    /// wrong password or an unrelated file leaves the app exactly as it was.
+    func migrateDatabase(from url: URL, password: String) async throws {
+        let didStartAccessing = url.startAccessingSecurityScopedResource()
+        defer {
+            if didStartAccessing {
+                url.stopAccessingSecurityScopedResource()
+            }
+        }
+
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            throw DatabaseError.fileNotFound
+        }
+
+        let encryptedData = try Data(contentsOf: url)
+        let decryptedData = try cryptoService.decrypt(encryptedData, password: password)
+        let migrated = try JSONDecoder().decode(DuoDatabase.self, from: decryptedData)
+
+        // Verified. Only now does anything here change.
+        try encryptedData.write(to: databaseURL)
+        keychainService.savePassword(password)
+
+        database = migrated
+        isLocked = false
+        showCreateDatabasePrompt = false
+        showPasswordPrompt = false
+        errorMessage = nil
+    }
+
     func importDatabase(from url: URL) async throws {
         // Start accessing security-scoped resource
         let didStartAccessing = url.startAccessingSecurityScopedResource()

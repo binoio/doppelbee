@@ -35,9 +35,18 @@ the update feed moved with the repository. As a consequence:
   copies of DuoBee 2.x will simply stop finding updates; they keep working
   otherwise.
 
-- **Your database does not carry over automatically.** Either export it from
-  DuoBee (**Database → Export**) and import it in DoppelBee, or move the file
-  by hand:
+- **Your database does not carry over automatically, but DoppelBee will help.**
+  On first launch the create-database screen offers **Migrate an Existing
+  Database…**, which opens a file picker already pointed at DuoBee's old
+  location. Choose `duo.db`, enter the password you used in DuoBee, and the
+  database is adopted along with its password.
+
+  macOS sandboxes each app to its own container, so DoppelBee genuinely cannot
+  see — or even check for — DuoBee's files on its own. Choosing the file in the
+  picker is what grants access; that step cannot be automated away.
+
+  If you would rather do it yourself, export from DuoBee (**Database → Export**)
+  and import in DoppelBee, or move the file by hand:
 
   ```
   from: ~/Library/Containers/io.bino.duobee/Data/Library/Application Support/DuoBee/duo.db
@@ -48,8 +57,12 @@ the update feed moved with the repository. As a consequence:
   yourself.)
 
 - **Your saved database password does not carry over.** Keychain items are
-  namespaced to the app; enter your database password once in DoppelBee and it
-  is saved again.
+  namespaced to the app. The migration assistant saves it again for you; if you
+  move the file by hand, enter your password once in DoppelBee instead.
+
+- **Your settings do not carry over.** Launch-at-login, auto-unlock and
+  auto-confirm live in the old app's preferences, which are inside its
+  container. Set them again under **Settings**.
 
 - **The verbose-logging default changed name.** If you had set it, use
   `defaults write io.bino.doppelbee duoVerboseLogging -bool YES`.

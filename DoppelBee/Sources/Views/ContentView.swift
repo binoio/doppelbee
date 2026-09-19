@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import AppKit
 
 struct ContentView: View {
     @EnvironmentObject var databaseManager: DuoDatabaseManager
@@ -91,7 +92,7 @@ struct ContentView: View {
         VStack(spacing: 0) {
             // Header with Add button
             HStack {
-                Text("Duo Keys")
+                Text("Keys")
                     .font(.title2)
                     .bold()
                 Spacer()
@@ -164,10 +165,10 @@ struct ContentView: View {
             Image(systemName: "key.fill")
                 .font(.system(size: 64))
                 .foregroundColor(.gray)
-            Text("No Duo Keys")
+            Text("No Keys")
                 .font(.title2)
                 .foregroundColor(.secondary)
-            Text("Add your first Duo key to get started")
+            Text("Add your first key to get started")
                 .foregroundColor(.secondary)
             Button(action: { showingAddKey = true }) {
                 Label("Add New Key", systemImage: "plus")
@@ -571,6 +572,7 @@ struct CreateDatabaseView: View {
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var isCreating = false
+    @State private var legacyURL: IdentifiableURL?
 
     var body: some View {
         VStack(spacing: 20) {
@@ -578,11 +580,11 @@ struct CreateDatabaseView: View {
                 .font(.system(size: 64))
                 .foregroundColor(.accentColor)
 
-            Text("Create Duo Database")
+            Text("Create Database")
                 .font(.title)
                 .bold()
 
-            Text("Set a password to protect your Duo keys")
+            Text("Set a password to protect your keys")
                 .foregroundColor(.secondary)
 
             VStack(spacing: 12) {
@@ -607,9 +609,46 @@ struct CreateDatabaseView: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(password.isEmpty || password != confirmPassword || isCreating)
+
+            Divider()
+                .frame(width: 300)
+
+            VStack(spacing: 4) {
+                Text("Upgrading from DuoBee?")
+                    .font(.callout)
+                    .foregroundColor(.secondary)
+                Button("Migrate an Existing Database…") {
+                    chooseLegacyDatabase()
+                }
+                .buttonStyle(.link)
+                .disabled(isCreating)
+            }
         }
         .padding(40)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .sheet(item: $legacyURL) { wrapper in
+            MigrateDatabaseSheet(sourceURL: wrapper.url)
+                .environmentObject(databaseManager)
+        }
+    }
+
+    /// The sandbox cannot see another app's container, so the user has to point
+    /// us at the file. Opening the panel on the old container's path is the most
+    /// we can do to shorten that; the powerbox navigates there on our behalf.
+    private func chooseLegacyDatabase() {
+        let panel = NSOpenPanel()
+        panel.message = "Choose the duo.db from your previous installation"
+        panel.prompt = "Choose"
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = false
+        panel.allowsMultipleSelection = false
+        panel.showsHiddenFiles = true
+        panel.directoryURL = LegacyMigration.suggestedDirectory
+
+        panel.begin { response in
+            guard response == .OK, let url = panel.url else { return }
+            legacyURL = IdentifiableURL(url: url)
+        }
     }
 
     private func createDatabase() {
@@ -623,6 +662,92 @@ struct CreateDatabaseView: View {
                 await MainActor.run {
                     databaseManager.errorMessage = "Failed to create database: \(error.localizedDescription)"
                     isCreating = false
+                }
+            }
+        }
+    }
+}
+
+/// `sheet(item:)` needs an Identifiable; a bare URL is not.
+struct IdentifiableURL: Identifiable {
+    let url: URL
+    var id: String { url.path }
+}
+
+/// Takes the password the old database was encrypted with. The file is only
+/// adopted if it decrypts, so a wrong password here is a recoverable mistake.
+struct MigrateDatabaseSheet: View {
+    @EnvironmentObject var databaseManager: DuoDatabaseManager
+    @Environment(\.dismiss) private var dismiss
+
+    let sourceURL: URL
+
+    @State private var password = ""
+    @State private var isMigrating = false
+    @State private var failure: String?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Migrate Database")
+                .font(.title2)
+                .bold()
+
+            Text("Enter the password for the database you are migrating. It is the password you used in DuoBee, not a new one.")
+                .font(.callout)
+                .foregroundColor(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text(sourceURL.path)
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .lineLimit(2)
+                .truncationMode(.middle)
+                .textSelection(.enabled)
+
+            SecureField("Password", text: $password)
+                .textFieldStyle(.roundedBorder)
+                .onSubmit(migrate)
+
+            if let failure {
+                Label(failure, systemImage: "exclamationmark.triangle.fill")
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            HStack {
+                Spacer()
+                Button("Cancel") { dismiss() }
+                    .disabled(isMigrating)
+                Button(action: migrate) {
+                    if isMigrating {
+                        ProgressView().scaleEffect(0.7).frame(width: 60)
+                    } else {
+                        Text("Migrate").frame(width: 60)
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(password.isEmpty || isMigrating)
+            }
+        }
+        .padding(24)
+        .frame(width: 440)
+    }
+
+    private func migrate() {
+        guard !password.isEmpty else { return }
+        isMigrating = true
+        failure = nil
+        Task {
+            do {
+                try await databaseManager.migrateDatabase(from: sourceURL, password: password)
+                await MainActor.run { dismiss() }
+            } catch {
+                await MainActor.run {
+                    // Decryption failure is overwhelmingly a wrong password, but
+                    // it is also what an unrelated file looks like. Say both.
+                    failure = "Could not open that database. Check the password, and that this is a DuoBee duo.db file."
+                    isMigrating = false
                 }
             }
         }
@@ -703,7 +828,7 @@ struct AddKeyView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("Add Duo Key")
+            Text("Add Key")
                 .font(.title)
                 .bold()
 
@@ -720,7 +845,7 @@ struct AddKeyView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Key Name (optional)")
                     .font(.headline)
-                TextField("My Duo Key", text: $keyName)
+                TextField("My Key", text: $keyName)
                     .textFieldStyle(.roundedBorder)
             }
 

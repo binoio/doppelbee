@@ -149,7 +149,7 @@ struct DoppelBeeApp: App {
         let panel = NSSavePanel()
         panel.allowedContentTypes = [.data]
         panel.nameFieldStringValue = "duo.db"
-        panel.message = "Export Duo Database"
+        panel.message = "Export Database"
         panel.prompt = "Export"
 
         panel.begin { response in

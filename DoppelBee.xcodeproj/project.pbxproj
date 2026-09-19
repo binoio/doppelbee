@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13E7B607463BC862AE7E1D78 /* LegacyMigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B632C2854C56CD67F7C8CA /* LegacyMigrationTests.swift */; };
 		1AE9BDABEB6519D8027E4F09 /* AppVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C493137F042E702E4B4E1AF1 /* AppVersionTests.swift */; };
 		1C7809A133056124EDC9B5C9 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0766CA9DAB3F23658B88EAC9 /* CryptoService.swift */; };
 		2720DF6AC44DAB957A629EB2 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF8A89C08766ED19F422A7 /* HelpView.swift */; };
+		2C0D91A6A57A47D08D878B00 /* LegacyMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D02B8A0ACE566B4AAE0871 /* LegacyMigration.swift */; };
 		361CBB7A9D1E84271C298C63 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF239B535305A045CEF38DD5 /* AppVersion.swift */; };
 		56533B4A343C8DFCB969490C /* DuoDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947F996A605E61DE67CA1919 /* DuoDatabaseManager.swift */; };
 		5BA30ED7B77C282BCE7061AA /* DoppelBeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D41FA8A3715CA93D8CD380 /* DoppelBeeApp.swift */; };
@@ -51,6 +53,7 @@
 		27DF8A89C08766ED19F422A7 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		29205F3799D1DAB92BC273D0 /* DoppelBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoppelBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36EDA12B4276C96698BB09AD /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		37B632C2854C56CD67F7C8CA /* LegacyMigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMigrationTests.swift; sourceTree = "<group>"; };
 		3DDD1719B0364B7D3B58A203 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		439EEF6F65B6547DBD3CAECA /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
 		52D41FA8A3715CA93D8CD380 /* DoppelBeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoppelBeeApp.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		EC298E228ECF5761FB3F86A1 /* HOTPGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTPGenerator.swift; sourceTree = "<group>"; };
 		EF44190E0B08AD7FE72942A6 /* DuoAPIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoAPIServiceTests.swift; sourceTree = "<group>"; };
 		EFE0F4490BC0A68DFFB8077E /* CryptoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoServiceTests.swift; sourceTree = "<group>"; };
+		F0D02B8A0ACE566B4AAE0871 /* LegacyMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMigration.swift; sourceTree = "<group>"; };
 		F0DB8A8C09AB37D9FC5A8AE1 /* HOTPGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTPGeneratorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +113,7 @@
 				A417376025575986442AA80A /* DuoPushServiceTests.swift */,
 				F0DB8A8C09AB37D9FC5A8AE1 /* HOTPGeneratorTests.swift */,
 				439EEF6F65B6547DBD3CAECA /* KeychainServiceTests.swift */,
+				37B632C2854C56CD67F7C8CA /* LegacyMigrationTests.swift */,
 				867D5839B5FE4197BDF885B6 /* UpdaterConfigurationTests.swift */,
 			);
 			name = Tests;
@@ -123,6 +128,7 @@
 				E3305056B2C6B283548D52BA /* DuoPushService.swift */,
 				EC298E228ECF5761FB3F86A1 /* HOTPGenerator.swift */,
 				BF42798AAC749A34E17A2DF0 /* KeychainService.swift */,
+				F0D02B8A0ACE566B4AAE0871 /* LegacyMigration.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -275,6 +281,7 @@
 				7D191E81FFFB1167B59A3415 /* DuoPushServiceTests.swift in Sources */,
 				F670644AB448B45B12991D22 /* HOTPGeneratorTests.swift in Sources */,
 				7F046B5177E97E56E1C83773 /* KeychainServiceTests.swift in Sources */,
+				13E7B607463BC862AE7E1D78 /* LegacyMigrationTests.swift in Sources */,
 				D6FF93D4668F5B98D30FFBC3 /* UpdaterConfigurationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +304,7 @@
 				714E3DB23E6F0A0B7679E60A /* HOTPGenerator.swift in Sources */,
 				2720DF6AC44DAB957A629EB2 /* HelpView.swift in Sources */,
 				A8AE7DED93505CBB240737E7 /* KeychainService.swift in Sources */,
+				2C0D91A6A57A47D08D878B00 /* LegacyMigration.swift in Sources */,
 				E9C2BEC8E45D6A05DC6E6FF2 /* SettingsView.swift in Sources */,
 				65179605AB9F61F36DA2395B /* UpdaterViewModel.swift in Sources */,
 			);
