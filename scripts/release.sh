@@ -17,8 +17,8 @@
 #        build/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_keys
 #      then paste the printed public key into DoppelBee/Resources/Info.plist.
 #   2. Notary credentials (profile name must match NOTARY_PROFILE below):
-#        xcrun notarytool store-credentials notary \
-#          --apple-id <id> --team-id <team>
+#        zsh ~/Documents/keys/restore.sh
+#      (installs the App Store Connect .p8 and creates doppelbee-notary)
 #   3. gh auth login, with push access to the repo.
 #   4. GitHub Pages enabled on the repo:
 #      Settings -> Pages -> source: main /docs.
@@ -33,7 +33,7 @@ cd "$(dirname "$0")/.."
 
 APP_NAME="DoppelBee"
 RELEASES_REPO="${DOPPELBEE_RELEASES_REPO:-binoio/doppelbee}"
-NOTARY_PROFILE="${NOTARY_PROFILE:-notary}"
+NOTARY_PROFILE="${NOTARY_PROFILE:-doppelbee-notary}"
 BUILD_DIR="build"
 APP_PATH="$BUILD_DIR/export/$APP_NAME.app"
 RELEASES_CLONE="$BUILD_DIR/releases-repo"

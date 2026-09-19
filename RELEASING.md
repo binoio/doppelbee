@@ -124,13 +124,18 @@ requires the Account Holder or Admin role on the team.
 
 ### 4. Notarization credentials
 
+The release Mac authenticates to the notary service with the shared App Store
+Connect API key from the credentials vault (`~/Documents/keys`), not an
+Apple ID and app-specific password. `restore.sh` there installs the `.p8` and
+creates the profile:
+
 ```zsh
-xcrun notarytool store-credentials notary \
-    --apple-id <apple-id> --team-id 43L352U8Y8
-xcrun notarytool history --keychain-profile notary   # must succeed
+zsh ~/Documents/keys/restore.sh
+xcrun notarytool history --keychain-profile doppelbee-notary   # must succeed
 ```
 
-The profile name must be `notary`, or pass `NOTARY_PROFILE=<name>`.
+The profile name must be `doppelbee-notary`, or pass `NOTARY_PROFILE=<name>`.
+The vault's `restore.sh` creates one such profile per app.
 
 ### 5. Sparkle signing key
 
@@ -140,7 +145,10 @@ again. It is not the same thing as the Developer ID certificate, and Apple has n
 copy of it.
 
 DoppelBee uses the maintainer's **shared** Sparkle key — the default login-Keychain
-item that also signs updates for other projects (Kona, etc.). Do not delete or
+item (account `ed25519`, service `https://sparkle-project.org`) that also signs
+FITS n' Finish, Edith and Outsight. It is catalogued in the credentials vault as
+`sparkle-ed25519-private.key`; `~/Documents/keys/sparkle-keys.manifest` is the
+source of truth for which key signs what. Do not delete or
 regenerate that item to "rotate" DoppelBee's key: it would silently break updates
 for every other project signed with it. If DoppelBee ever needs its own key, give
 it a separate item via `generate_keys --account DoppelBee` and pass the same
