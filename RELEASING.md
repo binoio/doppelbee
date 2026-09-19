@@ -23,22 +23,23 @@ each release, and stamps the commit SHA into the release body.
 `scripts/release.sh` tags this repo, uploads assets to its Releases, and
 commits the regenerated appcast to `docs/` on `main`.
 
-### One-time: the 3.0.0 rename
+### The 3.0.0 rename (done 2026-09-19)
 
-Version 3.0.0 renamed the app from DuoBee to DoppelBee. Everything in this
-file already assumes the new names, but the GitHub side has to be moved by
-hand before 3.0.0 can be cut:
+Version 3.0.0 renamed the app from DuoBee to DoppelBee. The GitHub move is
+complete and needs no repeating; it is recorded here because it explains the
+state of the feed:
 
-1. Rename the repository to `doppelbee` (**Settings → General → Repository
-   name**). GitHub redirects the old `binoio/duobee` URLs, including the
-   release-asset downloads already referenced by historical appcast entries.
-2. Re-check **Settings → Pages**: source `main` `/docs`. The feed then serves
-   from `https://binoio.github.io/doppelbee/appcast.xml`, which is what
-   3.0.0's `SUFeedURL` points at. Pages does **not** redirect from the old
-   `.../duobee/appcast.xml`, so installed DuoBee 2.x copies stop finding
-   updates — that is expected and documented in the 3.0.0 release notes.
-3. Update the local remote: `git remote set-url origin
-   git@github.com:binoio/doppelbee.git`.
+- The repository is `binoio/doppelbee`. GitHub redirects the old
+  `binoio/duobee` URLs, including the release-asset downloads referenced by
+  historical appcast entries.
+- Pages serves `main` `/docs` at `https://binoio.github.io/doppelbee/`, which
+  is what 3.0.0's `SUFeedURL` points at. Pages does **not** redirect from the
+  old `.../duobee/appcast.xml` — it now 404s, so installed DuoBee 2.x copies
+  no longer find updates. That is expected and documented in the 3.0.0
+  release notes.
+- `docs/index.html` is the product landing page behind the bino.io tile; it is
+  served from the same Pages site as the feed. Keep the accent (`#FFB300`) in
+  sync with the tile in `binoio/bino.io`.
 
 The Sparkle signing key is unchanged, so nothing about key handling below
 differs because of the rename.
