@@ -63,7 +63,7 @@ final class LegacyMigrationTests: XCTestCase {
         let manager = DuoDatabaseManager(
             databaseURL: dir.appendingPathComponent("duo.db"),
             keychainService: keychain,
-            defaults: UserDefaults(suiteName: "com.doppelbee.tests.\(UUID().uuidString)")!,
+            defaults: try XCTUnwrap(UserDefaults(suiteName: "com.doppelbee.tests.\(UUID().uuidString)")),
             autoLoad: false
         )
         return (manager, dir, keychain)
